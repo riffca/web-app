@@ -9,6 +9,7 @@
     "node": "none"
   },
   "scripts": {
+    "push": "git push -u origin master",
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodeserver": "nodemon backend/server.js",
     "phpserver": "SET PHP=true && webpack -w",
