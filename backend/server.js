@@ -1,6 +1,16 @@
 "use strict";
 let express = require('express');
 
+let mongoose = require('mongoose');
+mongoose.connect('http://locahost:8080');
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Database connected');
+});
+
+
+
 // E X P R E S S
 let app = new express();
 
