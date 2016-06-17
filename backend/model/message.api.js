@@ -1,18 +1,32 @@
 "use strict";
+//M O D E L
+let mongoose = require('mongoose');
+let MessageSchema = mongoose.schema({
+	name: String,
+	contact: String,
+	login: Boolean
+});
 
+MessageSchema.methods.checkPassword = (req, res)=>{
+	
+
+
+};
+
+let Admin = mongoose.model('Admin', MessageSchema);
+
+//A P I
 module.exports = function(express){
 
 	let api = express.Router();
-
 	api.get('/message', (req,res)=>{
 		res.json({
-			name: 'stas',
-			contact: 'riffca@ya.ru',
-			login: true,
-			status: res.authStatus
+			title: 'Title',
+			text: 'Message',
+			to: 'Stas',
+			from: 'Ann',
 		});
 	});
 
 	return api;
-	
 };

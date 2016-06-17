@@ -25,5 +25,4 @@ router
     .map(routeMap)
     .start(rootComponent, '#application', () => {
         console.log('Приложение работает');
-        Vue.http('/api/user');
     });

@@ -2,6 +2,7 @@
 	  <part-brand></part-brand>
     <router-view></router-view>
     <user-basket :basket="userBasket"></user-basket>
+    {{ user | json }}
 </template>
 
 <script>
@@ -19,18 +20,17 @@ export default {
   replace: false,
   data () {
     return {
+      user: ''
       userBasket:''
     };
   },
   asyncData(resolve, reject){
-    resolve({
-      userBasket:new Basket({
-        items:[
-          {name: 'stas'},
-          {name: 'stasik'}
-        ]
+    Vue.http('/api/user').then(data=>{
+      resolve({
+        user: data.user,
+        userBasket:new Basket()
       })
-    })
+    });
   }
 };
 </script>
