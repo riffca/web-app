@@ -25,7 +25,7 @@ export default class User {
         });
     }
     getUser() {
-        
+        return Vue.http('api/user');
     }
 
 }

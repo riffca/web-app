@@ -2,9 +2,9 @@ let storage = window.localStorage;
 
 export default {
 	setToken(token){
-		storage.setItem('password',token);
+		storage.setItem('token',token);
 	},
 	getToken(){
-		return storage.getItem(password);
+		return storage.getItem('token');
 	}
 };

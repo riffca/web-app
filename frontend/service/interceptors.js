@@ -1,3 +1,5 @@
+import token from './token';
+
 export default function () {
     let timeId = setInterval(() => {
         console.log('Loading..');
@@ -5,7 +7,7 @@ export default function () {
     return {
         request: (request) => {
             request.headers = {
-                'x-access-token': 'secret'
+                'x-access-token': token.getToken() || ''
             };
             return request;
         },
