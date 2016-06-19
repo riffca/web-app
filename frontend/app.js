@@ -13,6 +13,7 @@ Vue.use(vueResource);
 import interceptors from './service/interceptors';
 Vue.http.interceptors.push(interceptors);
 
+
 let rootComponent = Vue.extend(require('./root.vue'));
 
 let router = new vueRouter({

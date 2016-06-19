@@ -1,6 +1,6 @@
 <template>
 	  <part-brand></part-brand>
-    <router-view></router-view>
+    <router-view :user="user"></router-view>
     <user-basket :basket="userBasket"></user-basket>
     {{ user | json }}
 </template>
@@ -9,6 +9,7 @@
 //части
 import userBasket from './view/user-basket';
 import partBrand from './view/part-brand';
+
 //классы
 import Basket from './class/basket';
 
@@ -20,7 +21,7 @@ export default {
   replace: false,
   data () {
     return {
-      user: ''
+      user: '',
       userBasket:''
     };
   },

@@ -8,6 +8,22 @@ export default {
         name: 'contacts',
         component: require(routePath + '/contacts')
     },
+    '/profile': {
+        name: 'profile',
+        component: require(routePath + '/profile/index.profile'),
+        subRoutes: {
+            '/messages':{ 
+                name: 'messagesProfile'
+            },
+            '/album':{
+                name: 'albumProfile'
+            },
+            '/:username': {
+                name: 'userProfile',
+                component: require(routePath + '/profile/user.profile'), 
+            }
+        }
+    },
     '/auth': {
         name: 'auth',
         component: require(routePath + '/auth'),

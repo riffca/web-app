@@ -13,7 +13,6 @@ MessageSchema.methods.checkPassword = (req, res)=>{
 
 };
 
-let Admin = mongoose.model('Admin', MessageSchema);
 
 //A P I
 module.exports = function(express){

@@ -8,10 +8,11 @@
 			</div>
 			<h2>Создание коммерских веб приложений</h2>
 		</h1>
-		<div>
+		<div class="links-wrapper">
 			<a v-link="{name: 'contacts'}">Контакты</a>
 			<a v-link="{name: 'index'}">Индекс</a>
-			<a v-link="{name: 'auth'}">Auth</a>
+			<a v-link="{name: 'auth'}">Регистрация</a>
+			<a v-link="{name: 'profile'}">Профиль</a>
 	    </div>
     </div>
 </template>

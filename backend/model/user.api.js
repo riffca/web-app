@@ -1,11 +1,11 @@
 "use strict";
 //M O D E L
 let mongoose = require('mongoose');
-let UserSchema = mongoose.schema({
+let UserSchema = mongoose.Schema({
     name: String,
     contact: String,
 });
-let User = mongoose.model('User', 'UserSchema');
+let User = mongoose.model('User', UserSchema);
 
 //A P I
 let authCheck = require('../middleware/auth');
