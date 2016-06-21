@@ -21,7 +21,7 @@ let router = new vueRouter({
 });
 
 
-import routeMap from './router'; 
+import routeMap from './view/router'; 
 router
     .map(routeMap)
     .start(rootComponent, '#application', () => {

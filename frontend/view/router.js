@@ -1,7 +1,7 @@
 function getPath(path){
     return routerPath + path;
 }
-let routerPath = './view/router';
+let routerPath = './router';
 let profilePath = getPath('/profile');
 let authPath = getPath('/auth'); 
 export default {
