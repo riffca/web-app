@@ -13,7 +13,9 @@
 </template>
 
 <script>
-import navPanel from '../../nav-panel';
+
+
+import navPanel from '../../usable/nav-panel';
 import mixin from '../../mixin';
 export default {
 

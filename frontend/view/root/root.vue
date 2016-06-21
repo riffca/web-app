@@ -9,13 +9,13 @@
 
 <script>
 //html части
-import userBasket from './view/user-basket';
-import partBrand from './view/part-brand';
+import userBasket from './user-basket.root';
+import partBrand from './part-brand.root';
 
 //классы
-import App from './class/app';
-import User from './class/user';
-import Basket from './class/basket';
+import App from '../../class/app';
+import User from '../../class/user';
+import Basket from '../../class/basket';
 
 export default {
   components:{
