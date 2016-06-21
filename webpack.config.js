@@ -36,26 +36,26 @@ module.exports = {
     				'inline-cheap-module-source-map' : null,
     module: {
         loaders: [
-        {
-            test: /\.js$/,
-            loader: 'babel?presets[]=es2015',
-            exclude: /node_modules/
-        }, 
-        {
-            test: /\.scss$/,
-            loader: NODE_ENV === 'development' ?
-                'style!css!sass?sourceMap' : ExtractTextPlugin.extract(
-                	'css!autoprefixer?browsers=last 2 versions!sass'
-                )
-        }, 
-        {
-            test: /\.html$/,
-            loader: 'raw'
-        },
-        {
-            test: /\.vue$/,
-            loader: 'vue'
-        }
+            {
+                test: /\.js$/,
+                loader: 'babel?presets[]=es2015',
+                exclude: /node_modules/
+            }, 
+            {
+                test: /\.scss$/,
+                loader: NODE_ENV === 'development' ?
+                    'style!css!sass?sourceMap' : ExtractTextPlugin.extract(
+                    	'css!autoprefixer?browsers=last 2 versions!sass'
+                    )
+            }, 
+            {
+                test: /\.html$/,
+                loader: 'raw'
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue'
+            }
         ]
     },
 
@@ -72,13 +72,15 @@ module.exports = {
                 name: 'stas',
                 age: '26',
                 music: ['guitar', 'viola']
-            })
+            }),
+            Application: JSON.stringify({
+                key: 'secret'                
+            }) 
         }),
         new webpack.ProvidePlugin({
-            //Пробный вариант
-            showdev: path.join(frontend,'helpers', 'showdev'),
-            Vue: 'vue',
-            fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+            logg: path.join(frontend,'helper', 'logg.js'),
+            Vue: 'vue'
+            //fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
             //Dinamics: 'dynamics'
         })
     ]

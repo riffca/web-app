@@ -37,12 +37,12 @@ export default {
       //Objects
       let user = new User(response.data);
       let app = new App({user: user});
-      //Logging
+
       //вложенный объект user не логгится как данные
-      showdev('(app object)App',()=>{
+      logg('(app object)App',()=>{
         console.log(app);
       })
-      showdev('(app object)User',()=>{
+      logg('(app object)User',()=>{
         console.log(user);
       });
       //Resolve
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="sass">
-#main-logo {
+#main-loggo {
 	display: inline-block;
 }
 </style>

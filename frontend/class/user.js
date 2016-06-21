@@ -15,7 +15,7 @@ export default class User {
 
         //Процесс создания
         // this.checkAuth().then((res) => {
-        //     showdev(res.data.authStatus);
+        //     log(res.data.authStatus);
         // });
     }
     checkAuth() {
