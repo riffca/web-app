@@ -26,7 +26,8 @@ export default {
                 component: require(profilePath + '/user.profile'),
             },
             '/:username/:album': {
-                name: 'albumProfile'
+                name: 'albumProfile', 
+                component: require(profilePath + '/album.profile')
             }
         }
     },

@@ -13,8 +13,9 @@ export default function () {
         },
         response: (response) => {
             clearTimeout(timeId);
-            showdev('Get http data!');
-            showdev(response.data);
+            showdev('Get http data!', ()=>{
+                console.log(response.data);
+            });
             return response;
         }
     };

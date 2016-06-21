@@ -1,7 +1,11 @@
 import tokenService from '../service/token';
 
 export default class User {
-    constructor({ id, name, password = '', email, auth = false }) {
+    constructor({ id = 1 , 
+                  name = "guest" , 
+                  password = '', 
+                  email = '', 
+                  auth = false }) {
 
         this.id = id;
         this.name = name;
@@ -10,16 +14,16 @@ export default class User {
         this.email = email;
 
         //Процесс создания
-        this.checkAuth().then((res) => {
-            alert(res.data.authStatus);
-        });
+        // this.checkAuth().then((res) => {
+        //     showdev(res.data.authStatus);
+        // });
     }
     checkAuth() {
         let token = tokenService.getToken();
         if (!token) {
             return 'No Token Provided!';
         }
-        Vue.http('/api/auth/check-user', {
+        return Vue.http('/api/auth/check-user', {
             method: 'POST',
             data: { token: token }
         });

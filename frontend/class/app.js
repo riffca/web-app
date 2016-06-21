@@ -3,7 +3,7 @@ export default class App {
     constructor({user}) {
         this.user = user;
         this.location = this.getLocation();
-        this.created = Date.now;
+        this.created = Date.now();
     }
     //Функции получения
     getImage(path) {

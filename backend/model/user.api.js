@@ -13,8 +13,10 @@ module.exports = function(express) {
     let api = express.Router();
     api.get('/user', authCheck, (req, res) => {
         res.json({
+            id: 777,
             name: 'stas',
-            contact: 'riffca@ya.ru',
+            email: 'riffca@ya.ru',
+            phoneNumber: '',
             login: true,
             status: res.authStatus
         });

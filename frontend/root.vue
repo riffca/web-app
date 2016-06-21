@@ -17,7 +17,6 @@ import App from './class/app';
 import User from './class/user';
 import Basket from './class/basket';
 
-
 export default {
   components:{
     userBasket,
@@ -33,14 +32,27 @@ export default {
     };
   },
   asyncData(resolve, reject){
-    Vue.http('/api/user').then(data=>{
-      let user = new User(data.user);
+    Vue.http('/api/user').then(response=>{
+      //Objects
+      let user = new User(response.data);
       let app = new App({user: user});
-      resolve({
-        user: data.user,
-        userBasket:new Basket()
+      //Logging
+      //вложенный объект user не логгится как данные
+      showdev('(app object)App',()=>{
+        console.log(app);
       })
-    });
+      showdev('(app object)User',()=>{
+        console.log(user);
+      });
+      //Resolve
+      resolve({
+        user: user,
+        userBasket:new Basket({
+          items: []
+        })
+      })
+      //Errors
+    },err=>{console.log(err)});
   }
 };
 </script>
