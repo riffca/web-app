@@ -1,5 +1,5 @@
 <template>
-	<div id="nav-panel">
+	<div id="nav-links">
 		<span>Hавигация</span>
 		<slot></slot>
 	</div>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="sass">
-#nav-panel {
+#nav-links {
 	background: rgba(grey, .3)
 	span {
 		font-weight: bold;

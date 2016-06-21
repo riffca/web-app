@@ -9,10 +9,8 @@ let MessageSchema = mongoose.schema({
 
 MessageSchema.methods.checkPassword = (req, res)=>{
 	
-
-
+	
 };
-
 
 //A P I
 module.exports = function(express){

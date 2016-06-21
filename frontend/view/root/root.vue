@@ -1,26 +1,27 @@
 О П И С А Н И Е
 В root получаем ссылки на app и user в момент asyncData.
 <template>
-	  <part-brand></part-brand>
+	  <brand-root></brand-root>
     <router-view :user="user"></router-view>
-    <user-basket :basket="userBasket"></user-basket>
+    <basket-root :basket="userBasket"></basket-root>
     {{ user | json }}
 </template>
 
 <script>
 //html части
-import userBasket from './user-basket.root';
-import partBrand from './part-brand.root';
+import BasketRoot from './basket.root';
+import BrandRoot from './brand.root';
 
 //классы
+
 import App from '../../class/app';
 import User from '../../class/user';
 import Basket from '../../class/basket';
 
 export default {
   components:{
-    userBasket,
-  	partBrand
+    BasketRoot,
+  	BrandRoot
   }, 
   replace: false,
   data () {

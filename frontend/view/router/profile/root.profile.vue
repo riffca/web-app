@@ -1,13 +1,13 @@
 <template>
 	<div id="profile">
 		<h1>Профиль</h1>
-		<nav-panel>
+		<nav-links>
 			<div class="links-wrapper">
 				<a v-link="{name: 'userProfile',params: {username: 'stas'}}">Info</a>
 				<a v-link="{name: 'messagesProfile'}">Сообщения</a>
 				<a v-link="{name: 'albumProfile'}">Фото</a>
 		    </div>	
-		<nav-panel>
+		<nav-links>
 		<router-view></router-view>
 	</div>
 </template>
@@ -15,12 +15,12 @@
 <script>
 
 
-import navPanel from '../../usable/nav-panel';
+import navLinks from '../../usable/nav-links';
 import mixin from '../../mixin';
 export default {
 
   components: {
-  	navPanel
+  	navLinks
   },
 
   data () {

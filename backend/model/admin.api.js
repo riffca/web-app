@@ -20,7 +20,7 @@ module.exports = function(express) {
         res.json({
         	adminStatus: true,
             user: {
-                name: 'stas',
+                name: 'riffca',
                 contact: 'riffca@ya.ru',
                 login: true,
                 status: 'admin'
