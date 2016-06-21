@@ -2,7 +2,7 @@ import token from './token';
 
 export default function () {
     let timeId = setInterval(() => {
-        console.log('Loading..');
+        console.log('(http)Loading..');
     }, 10);
     return {
         request: (request) => {
@@ -13,6 +13,7 @@ export default function () {
         },
         response: (response) => {
             clearTimeout(timeId);
+            showdev('Get http data!');
             showdev(response.data);
             return response;
         }

@@ -1,15 +1,15 @@
 import tokenService from '../service/token';
 
 export default class User {
-    constructor({ id, name, password, email, auth = false }) {
+    constructor({ id, name, password = '', email, auth = false }) {
 
         this.id = id;
         this.name = name;
+        this.auth = auth;
         this.password = password;
         this.email = email;
-        this.auth = auth;
 
-        //Процессы создания
+        //Процесс создания
         this.checkAuth().then((res) => {
             alert(res.data.authStatus);
         });
@@ -24,8 +24,8 @@ export default class User {
             data: { token: token }
         });
     }
+
     getUser() {
         return Vue.http('api/user');
     }
-
 }
