@@ -1,9 +1,9 @@
 <template>
-	Login	
+	singUp
 </template>
+
 <script>
 export default {
-
   data () {
     return {
 
