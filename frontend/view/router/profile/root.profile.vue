@@ -16,8 +16,10 @@
 
 
 import navLinks from '../../usable/nav-links';
-import mixin from '../../mixin';
+import appMixin from '../../mixin';
+
 export default {
+  mixins:{appMixin},
 
   components: {
   	navLinks

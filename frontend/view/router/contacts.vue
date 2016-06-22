@@ -3,7 +3,10 @@
 </template>
 
 <script>
+import appMixin from '../mixin';
+
 export default {
+  mixins:{appMixin},
   data () {
     return {
     };

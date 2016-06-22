@@ -13,7 +13,7 @@ export default function () {
         },
         response: (response) => {
             clearTimeout(timeId);
-            logg('Get http data!', ()=>{
+            logger('Get http data!', ()=>{
                 console.log(response.data);
             });
             return response;

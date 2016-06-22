@@ -12,7 +12,10 @@
 
 <script>
 import navLinks from '../../usable/nav-links';
+import appMixin from '../../mixin';
+
 export default {
+  mixins:{appMixin},
   components: {navLinks},
   data () {
     return {

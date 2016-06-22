@@ -1,15 +1,14 @@
 <template>
- <h1>Индекс</h1>
- {{ user | json }}
+	<div id="user-root">
+		{{ user | json }}	
+	</div>
 </template>
-
 <script>
-import appMixin from '../mixin';
-
 export default {
-  mixins:[appMixin],
+  props: ['user'],
   data () {
     return {
+
     };
   }
 };
