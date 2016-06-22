@@ -9,8 +9,8 @@ export default class App {
     getImage(path) {
         this.find(path);
     }
-    getUser(path) {
-        this.find(path);
+    getUser() {
+        this.find('/api/user');
     }
     getPost(path) {
         this.find(path);

@@ -33,7 +33,22 @@ export default {
     };
   },
   asyncData(resolve, reject){
-    Vue.http('/api/user').then(response=>{
+    let app = new App();
+    logger('(app object)App',()=>{
+        console.log(app);
+    })
+    app.getUser().then(response=>{
+        // let user = new User(response.data)
+        // resolve({
+        //   user: user,
+        //   app: app,
+        //   basket: user.basket
+        // });
+        // logger('(app object)User',()=>{
+        //   console.log(user);
+        // });  
+    }, err => {logger(err)});
+    /*Vue.http('/api/user').then(response=>{
       //Objects
       let user = new User(response.data);
       let app = new App({user: user});
@@ -52,7 +67,7 @@ export default {
         basket: user.basket
       })
       //Errors
-    },err=>{console.log(err)});
+    },err=>{console.log(err)});*/
   }
 };
 </script>
