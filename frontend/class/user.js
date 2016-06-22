@@ -1,10 +1,12 @@
 import tokenService from '../service/token';
+import Basket from './basket';
 
 export default class User {
     constructor({ id = 1 , 
                   name = "guest" , 
                   password = '', 
-                  email = '', 
+                  email = '',
+                  basket,
                   auth = false }) {
 
         this.id = id;
@@ -12,10 +14,11 @@ export default class User {
         this.auth = auth;
         this.password = password;
         this.email = email;
+        this.basket = new Basket(basket);
 
         //Процесс создания
         // this.checkAuth().then((res) => {
-        //     log(res.data.authStatus);
+        //     logg(res.data.authStatus);
         // });
     }
     checkAuth() {

@@ -3,8 +3,8 @@
 <template>
 	  <brand-root></brand-root>
     <router-view :user="user"></router-view>
-    <basket-root :basket="userBasket"></basket-root>
-    {{ user | json }}
+    <basket-root :basket="user.basket"></basket-root>
+      user: {{ user | json }}
 </template>
 
 <script>
@@ -16,7 +16,6 @@ import BrandRoot from './brand.root';
 
 import App from '../../class/app';
 import User from '../../class/user';
-import Basket from '../../class/basket';
 
 export default {
   components:{
@@ -28,8 +27,7 @@ export default {
     return {
       name: "Web App",
       app: '',
-      user: '',
-      userBasket:''
+      user: ''
     };
   },
   asyncData(resolve, reject){
@@ -47,10 +45,7 @@ export default {
       });
       //Resolve
       resolve({
-        user: user,
-        userBasket:new Basket({
-          items: []
-        })
+        user: user
       })
       //Errors
     },err=>{console.log(err)});

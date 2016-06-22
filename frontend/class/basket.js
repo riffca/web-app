@@ -1,5 +1,5 @@
 export default class Basket {
-    constructor({items}) {
-    	this.items = [];
+    constructor({users}) {
+    	this.users = users;
     }
 }

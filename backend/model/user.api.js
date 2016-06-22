@@ -18,6 +18,16 @@ module.exports = function(express) {
             email: 'riffca@ya.ru',
             phoneNumber: '',
             login: true,
+            basket: {
+                users: [
+                    {
+                        name: 'step'
+                    },
+                    {
+                        name: 'ann'
+                    }
+                ]
+            },
             status: res.authStatus
         });
     });
