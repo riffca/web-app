@@ -6,7 +6,7 @@ export default class User {
                   name = "guest" , 
                   password = '', 
                   email = '',
-                  basket,
+                  basket = '',
                   auth = false }) {
 
         this.id = id;
@@ -18,7 +18,7 @@ export default class User {
 
         //Процесс создания
         // this.checkAuth().then((res) => {
-        //     logg(res.data.authStatus);
+        //     logger(res.data.authStatus);
         // });
     }
     checkAuth() {

@@ -1,3 +1,3 @@
 export default {
-	props: ['user']
+	props: ['user','app']
 };

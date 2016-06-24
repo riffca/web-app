@@ -1,42 +1,44 @@
+import tokenService from '../service/token';
+
 export default class App {
 
-    constructor({user}) {
+    constructor(user = {}) {
         this.user = user;
         this.location = this.getLocation();
-        this.created = Date.now();
+        this.created = Date.now('M-h');
     }
     //Функции получения
     getImage(path) {
-        this.find(path);
+        return this.find(path);
     }
-    getUser() {
-        this.find('/api/user');
+    getUser(id = '') {
+        return this.find('/api/user' + id);
     }
     getPost(path) {
-        this.find(path);
+        return this.find(path);
     }
     getMessage(path) {
-        this.find(path);
+        return this.find(path);
     }
     getGroup(path) {
-        this.find(path);
+        return this.find(path);
     }
 
     //Функции поиска
     findImage(path) {
-        this.find(path);
+        return this.find(path);
     }
     findUser(path) {
-        this.find(path);
+        return this.find(path);
     }
     findPost(path) {
-        this.find(path);
+        return this.find(path);
     }
     findMessage(path) {
-        this.find(path);
+        return this.find(path);
     }
     findGroup(path) {
-        this.find(path);
+        return this.find(path);
     }
     //Внутренний интерфейс
     find(string) {
