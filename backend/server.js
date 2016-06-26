@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 let userApi = require('./model/user.api')(express);
-app.use('/api',userApi);
+app.use('/api/user',userApi);
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
