@@ -10,7 +10,7 @@ module.exports = function(express) {
             email: req.body.email,
             password: req.body.password
         });
-        auth.createToken(user)
+        auth.createToken(user, 'New user has been created')
             .then(token => {
                 user.save(err => {
                     if (err) {
@@ -19,7 +19,7 @@ module.exports = function(express) {
                     }
                     res.json({
                         success: true,
-                        message: "New user has been created",
+                        message: "Successfully login",
                         token: token
                     });
                 });

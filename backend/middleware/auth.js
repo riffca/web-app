@@ -3,8 +3,8 @@
 let jwt = require('jsonwebtoken');
 let sercretKey = require('../config').secretKey;
 
-module.exports =  {
-    createToken(user) {
+module.exports = {
+    createToken(user, message) {
         return new Promise((resolve, reject) => {
             jwt.sign({
                 id: user._id,
@@ -17,6 +17,7 @@ module.exports =  {
                 resolve(token);
             });
         });
+
     },
     authCheck(req, res, next) {
         let authToken = 'secret';
@@ -38,5 +39,3 @@ module.exports =  {
         }
     }
 };
-
-
