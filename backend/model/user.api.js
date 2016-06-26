@@ -1,71 +1,68 @@
 "use strict";
 let User = require('./user');
 
-//C R E A T E  T O K E N  F U N C T I O N
-let jwt = require('jsonwebtoken');
-let sercretKey = require('../config').secretKey;
-let getToken = '';
-function createToken(user) {
-    jwt.sign({
-        id: user._id,
-        name: user.name,
-        email: user.email
-    }, sercretKey, {
-        expiresIn: '10h'
-    }, (err, token) => {
-        if (err) return err;
-        getToken = token;
-    });
-}
-
 //A P I
-let authCheck = require('../middleware/auth');
+let auth = require('../middleware/auth');
 
 module.exports = function(express) {
     let api = express.Router();
-    api.post('/signup', (req, res) => {
-        let user = new User({
-            email: req.body.email,
-            password: req.body.password
-        });
-        createToken(user);
-        user.save((err) => {
-            if(err) {
+    //create user
+    api.post('/signup', auth.createNewUser,(req, res) => {
+        res.newUser.save((err) => {
+            if (err) {
                 res.send(err);
                 return;
             }
             res.json({
                 success: true,
-                message: "User has been created",
-                token: getToken
+                message: "New user has been created",
+                token: res.newToken
             });
         });
     });
-    api.post('/name',(req,res)=>{
-        res.json(req.body);
-    });
-    // api.post('/login', (req, res) => {
-    //     User
-    //         .findOne(req.body.email)
-    //         .exec(() => {
-    //         });
-    // });
-    api.get('/user', authCheck, (req, res) => {
-        res.json({
-            id: 777,
-            name: 'stas',
-            email: 'riffca@ya.ru',
-            phoneNumber: '',
-            login: true,
-            basket: {
-                users: [{
-                    name: 'step'
-                }, {
-                    name: 'ann'
-                }]
-            },
-            status: res.authStatus
+    //login user
+    api.post('/login', (req, res) => {
+        User
+        .findOne({
+            username: req.body.email
+        })
+        .select('name password')
+        .exec((err, user)=>{
+            if (err) throw err;
+            if (!user) {
+                res.send({ message: "Некорректные данные" });
+            } else if (user) {
+                var validPassword = user.comparePassword(req.body.password);
+                if (!validPassword) {
+                    res.send({ message: "Неверный пароль" });
+                } else {
+                    // token
+                    let token = auth.createToken(req,res,user);
+                    res.json({
+                        success: true,
+                        message: "Successfully login",
+                        token: token
+                    });
+                }
+            }
         });
     });
+    // api.get('/user', authCheck, (req, res) => {
+    //     res.json({
+    //         id: 777,
+    //         name: 'stas',
+    //         email: 'riffca@ya.ru',
+    //         phoneNumber: '',
+    //         login: true,
+    //         basket: {
+    //             users: [{
+    //                 name: 'step'
+    //             }, {
+    //                 name: 'ann'
+    //             }]
+    //         },
+    //         status: res.authStatus
+    //     });
+    // });
     return api;
 };
