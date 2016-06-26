@@ -13,6 +13,10 @@ db.once('open', () => {
 // E X P R E S S
 let app = new express();
 
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static(__dirname + '/public'));
 
 let userApi = require('./model/user.api')(express);
