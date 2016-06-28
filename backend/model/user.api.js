@@ -10,7 +10,7 @@ module.exports = function(express) {
             email: req.body.email,
             password: req.body.password
         });
-        auth.createToken(user)
+        auth.createToken(user, 'New user has been created')
             .then(token => {
                 user.save(err => {
                     if (err) {
@@ -31,15 +31,17 @@ module.exports = function(express) {
             .findOne({
                 username: req.body.email
             })
-            .select('name password')
+            .select('password')
             .exec((err, user) => {
                 if (err) throw err;
                 if (!user) {
                     res.send({ message: "Некорректные данные" });
+                    return;
                 } else if (user) {
                     var validPassword = user.comparePassword(req.body.password);
                     if (!validPassword) {
                         res.send({ message: "Неверный пароль" });
+                        return;
                     } else {
                         auth.createToken(user).then(token => {
                             res.json({
