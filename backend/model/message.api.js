@@ -45,6 +45,7 @@ let Message = mongoose.model('Message', MessageSchema);
 module.exports = function(express) {
 
     let api = express.Router();
+    //api.use(auth.checkUserAuth);
     api.post('/create', (req, res) => {
         Message.create({
             to: req.body.toId,

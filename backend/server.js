@@ -4,11 +4,9 @@ let express = require('express');
 // D A T A B A S E
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('localhost:27017');
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Database connected');
+mongoose.connect('localhost:27017', err =>{
+	if(err) console.log(err);
+	console.log('Database connected');
 });
 
 // E X P R E S S
