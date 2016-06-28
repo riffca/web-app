@@ -3,26 +3,23 @@
 let errorHandler = require('../error/errorHandler');
 let mongoose = require('mongoose');
 let MessageSchema = mongoose.Schema({
-    to: String,
-    from: String,
+    writtenBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     title: String,
-    text: String
+    text: String,
+    likes: Number
 });
 
-MessageSchema.statics = {
-    deleteMessage(req, res) {
-        this.findOne(req.body.messageId)
-        	.select('text title')
+MessageSchema.methods = {
+    delete(req, res) {
+        this.find(res.body.id)
             .then(message => {
                 message.remove();
-                res.json({
-                	success: true,
-                	data: message,
-                	message: 'Message deleted'
-                });
             });
     },
-    updateMessage(req, res) {
+    update(req, res) {
         this.find(req.body.messageId)
             .then(message => {
                 message.update({
@@ -37,34 +34,26 @@ MessageSchema.statics = {
                 });
             }, errorHandler(res));
     },
-};
-
-let Message = mongoose.model('Message', MessageSchema);
-
-//A P I
-module.exports = function(express) {
-
-    let api = express.Router();
-    api.post('/create', (req, res) => {
-        Message.create({
+    create(req, res) {
+        this.create({
             to: req.body.toId,
             from: req.body.fromId,
             title: req.body.title,
             text: req.body.text,
         }).then(message => {
             res.json({
-                message: "new Message created!",
-                succes: true,
-                data: message
+                success: true,
+                message: "message sent",
+                messageData: message
             });
-        });
-    });
-    api.post('/delete', (req, res) => {
-        Message.deleteMessage(req, res);
-    });
-    api.get('/update', (req, res) => {
-        Message.update(req, res);
-    });
+        }, errorHandler(res));
+    }
+};
+
+//A P I
+module.exports = function(express) {
+
+    let api = express.Router();
     api.get('/message', (req, res) => {
         res.json({
             title: 'Title',
@@ -73,5 +62,6 @@ module.exports = function(express) {
             from: 'Ann',
         });
     });
+
     return api;
 };
