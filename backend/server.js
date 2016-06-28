@@ -26,7 +26,7 @@ app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-let config = require('./config');
+//let config = require('./config');
 app.listen(config.port, () => {
     console.log('server started at port ' + config.port);
 });
