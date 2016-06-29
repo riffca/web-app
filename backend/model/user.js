@@ -4,7 +4,10 @@ let bcrypt = require('bcrypt-nodejs');
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let UserSchema = mongoose.Schema({
-    name: String,
+    name:{
+        firstName: String,
+        lastName: String
+    },
     email: {
         type: String,
         required: true

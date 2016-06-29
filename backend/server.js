@@ -3,7 +3,24 @@ let express = require('express');
 
 // D A T A B A S E
 let mongoose = require('mongoose');
+
+function timeStampsPlugin(schema, options){
+  schema.add({ 
+  	createdAt: Date.now(),
+  	upadatedAt: Date.now(),
+  });
+  
+  schema.pre('save', function (next) {
+    this.upadtedAt = Date.now();
+    next();
+  });
+  
+  if (options && options.index) {
+    schema.path('upadatedAt').index(options.index);
+  }
+}
 mongoose.Promise = global.Promise;
+mongoose.plugin(timeStampsPlugin);
 mongoose.connect('localhost:27017', err =>{
 	if(err) console.log(err);
 	console.log('Database connected');
