@@ -12,7 +12,7 @@ export default class App {
         return this.find(path);
     }
     getUser(id = '') {
-        return this.find('/api/user' + id);
+        return this.find('/api/user/getDefaultUser' + id);
     }
     getPost(path) {
         return this.find(path);

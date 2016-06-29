@@ -1,6 +1,21 @@
 <template>
- <h1>Индекс</h1>
- {{ user | json }}
+ 
+	<index-services>
+		<index-service>
+		  <svg-icon img="guitar"></svg-icon>
+		</index-service>
+		<index-service>
+		  <svg-icon img="acoustic"></svg-icon>
+		</index-service>
+		<index-service>
+		  <svg-icon img="viola"></svg-icon>
+		</index-service>
+		<index-service>
+		<svg-icon img="violin"></svg-icon>
+		</index-service>	
+	</index-services>
+
+
 </template>
 
 <script>

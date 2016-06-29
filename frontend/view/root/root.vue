@@ -52,7 +52,7 @@ export default {
           console.log(jsonHelper(app));
         })
         logger('(Create app object)User',()=>{
-          console.log(jsonHelper(app)); 
+          console.log(jsonHelper(user)); 
         });  
 
     }, err => {logger(err)});

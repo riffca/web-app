@@ -54,7 +54,7 @@ module.exports = function(express) {
                 }
             });
     });
-    api.get('/user', auth.authCheck, (req, res) => {
+    api.get('/getDefaultUser', auth.authCheck, (req, res) => {
         res.json({
             id: 777,
             name: 'stas',

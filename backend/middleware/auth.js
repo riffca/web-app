@@ -25,9 +25,9 @@ module.exports = {
         if (token != authToken) {
             res.authStatus = 'guest';
             res.json({
-                id: 777,
+                id: 0,
                 name: 'guest',
-                email: 'riffca@ya.ru',
+                email: '',
                 phoneNumber: '',
                 login: true,
                 basket: {},
