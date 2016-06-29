@@ -4,16 +4,33 @@ let bcrypt = require('bcrypt-nodejs');
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let UserSchema = mongoose.Schema({
-    name:{
-        firstName: String,
-        lastName: String
+    name: {
+        firstName: {
+            type: String,
+            minlength: 1,
+            maxlength: 400
+        },
+        lastName: {
+            type: String,
+            minlength: 1,
+            maxlength: 400
+        }
     },
     email: {
         type: String,
-        required: true
+        minlength: 1,
+        maxlength: 400
     },
-    password: String,
-    contact: String,
+    password: {
+        type: String,
+        minlength: 1,
+        maxlength: 400
+    },
+    contact: {
+        type: String,
+        minlength: 1,
+        maxlength: 400
+    },
     messages: {
         type: ObjectId,
         ref: 'Message'
