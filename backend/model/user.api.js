@@ -31,7 +31,7 @@ module.exports = function(express) {
             .findOne({
                 username: req.body.email
             })
-            .select('password')
+            .select('name username contactPhone age location')
             .exec((err, user) => {
                 if (err) throw err;
                 if (!user) {
@@ -69,6 +69,26 @@ module.exports = function(express) {
                 }]
             },
             status: res.authStatus
+        });
+    });
+    api.use(auth.verifyToken);
+    api.get('/getCurrentUser',(req, res) => {
+        res.json(res.decodedToken);
+    });
+    api.post('/updateCurrentUser',(req,res)=>{
+        User.findOne(req.body.userId)
+        .then(user =>{
+            user.update({
+                contactPhone: req.body.contactPhone,
+                username: req.body.username,
+                age: req.body.age,
+            }).then(modefiedUser=>{
+                res.json({
+                    success: true,
+                    message: 'User has been modefied',
+                    modefiedUser: modefiedUser
+                });
+            });
         });
     });
     return api;

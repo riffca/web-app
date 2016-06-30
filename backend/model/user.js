@@ -4,10 +4,13 @@ let bcrypt = require('bcrypt-nodejs');
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let UserSchema = mongoose.Schema({
+    username: {
+        type: String,
+        maxlength: 400,
+    },
     name: {
         firstName: {
             type: String,
-            minlength: 1,
             maxlength: 400
         },
         lastName: {
@@ -16,29 +19,37 @@ let UserSchema = mongoose.Schema({
             maxlength: 400
         }
     },
+    age: {
+        type: Number,
+        max: 1000
+    },
+    location: {
+        type: String,
+        maxLength: 400
+    },
     email: {
         type: String,
-        minlength: 1,
         maxlength: 400
     },
     password: {
         type: String,
-        minlength: 1,
         maxlength: 400
     },
-    contact: {
+    contactPhone: {
         type: String,
-        minlength: 1,
         maxlength: 400
     },
-    messages: {
+    basket: {
+        type: String
+    },
+    messages: [{
         type: ObjectId,
         ref: 'Message'
-    },
-    posts: {
+    }],
+    posts: [{
         type: ObjectId,
         ref: 'Post'
-    }
+    }]
 });
 //M O D E L  M I D D L E W A R E
 UserSchema.pre('save', next => {

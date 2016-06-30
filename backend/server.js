@@ -6,8 +6,14 @@ let mongoose = require('mongoose');
 
 function timeStampsPlugin(schema, options){
   schema.add({ 
-  	createdAt: Date.now(),
-  	upadatedAt: Date.now(),
+  	createdAt: {
+  		type: Date,
+  		default:Date.now()
+  	},
+  	upadatedAt:  {
+  		type: Date,
+  		default:Date.now()
+  	},
   });
   
   schema.pre('save', function (next) {

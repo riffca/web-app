@@ -1,47 +1,50 @@
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let AlbumSchema = mongoose.Schema({
-	name: {
-		type: String,
-		maxlength: 400
-	},
-	images: [{type: ObjectId, ref: 'Image'}],
-	user: {
-		type: ObjectId,
-		ref: 'User'
-	}
+    name: {
+        type: String,
+        maxlength: 400
+    },
+    images: [{
+            type: ObjectId,
+            ref: 'Image'
+        }],
+    user: {
+        type: ObjectId,
+        ref: 'User'
+    }
 });
 
 let ImageSchema = mongoose.Schema({
-	full: {
-		type: String,
-		required: true
-	},
-	mini: {
-		type: String,
-		required: true
-	},
-	positionIndex: Number,
-	album: {
-		type: ObjectId,
-		ref: 'Album'
-	},
-	user: {
-		type: ObjectId,
-		ref: 'User'
-	}
+    full: {
+        type: String,
+        required: true
+    },
+    mini: {
+        type: String,
+        required: true
+    },
+    positionIndex: Number,
+    album: {
+        type: ObjectId,
+        ref: 'Album'
+    },
+    user: {
+        type: ObjectId,
+        ref: 'User'
+    }
 });
 let Album = mongoose.model('Album', AlbumSchema);
 let Image = mongoose.model('Image', ImageSchema);
 
 
-module.exports = (express, app)=> {
-	let api = express.Router();
-	api.post('/uploadOneImage',(req,res)=>{
-		
+module.exports = (express, app) => {
+    let api = express.Router();
+    api.post('/uploadOneImage', (req, res) => {
 
-	});
-	api.post('/uploadImages',(req,res)=>{
 
-	});
+    });
+    api.post('/uploadImages', (req, res) => {
+
+    });
 };

@@ -1,16 +1,38 @@
 "use strict";
 
 let jwt = require('jsonwebtoken');
-let sercretKey = require('../config').secretKey;
+let secretKey = require('../config').secretKey;
 
 module.exports = {
+    verifyToken(req, res, next) {
+        let token = req.headers['x-access-token'];
+        if (!token) {
+            res.json({
+                success: false,
+                message: 'No Token Provided'
+            });
+            return;
+        }
+        jwt.verify(token, secretKey, (err, decoded) => {
+            if (err) {
+                res.json({
+                    message: 'bad Token Provided',
+                    success: false,
+                    error: err
+                });
+                console.log(err);
+            }
+            res.decodedToken = decoded;
+            next();
+        });
+    },
     createToken(user, message) {
         return new Promise((resolve, reject) => {
             jwt.sign({
                 id: user._id,
                 name: user.name,
                 email: user.email
-            }, sercretKey, {
+            }, secretKey, {
                 expiresIn: '10h'
             }, (err, token) => {
                 if (err) reject(err);
