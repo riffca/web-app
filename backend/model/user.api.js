@@ -31,7 +31,7 @@ module.exports = function(express) {
             .findOne({
                 username: req.body.email
             })
-            .select('name username contactPhone age location')
+            .select('name username email')
             .exec((err, user) => {
                 if (err) throw err;
                 if (!user) {

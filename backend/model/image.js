@@ -1,3 +1,5 @@
+"use strict";
+
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let AlbumSchema = mongoose.Schema({
@@ -36,9 +38,12 @@ let ImageSchema = mongoose.Schema({
 });
 let Album = mongoose.model('Album', AlbumSchema);
 let Image = mongoose.model('Image', ImageSchema);
+const upload =  require('multer')({
+	dest: __dirname + '../public/uploads'
+});
 
 
-module.exports = (express, app) => {
+module.exports = (express) => {
     let api = express.Router();
     api.post('/uploadOneImage', (req, res) => {
 
@@ -47,4 +52,6 @@ module.exports = (express, app) => {
     api.post('/uploadImages', (req, res) => {
 
     });
+
+    return api;
 };
