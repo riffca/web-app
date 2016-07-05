@@ -66,8 +66,8 @@ export default {
         name: 'auth',
         component: require(authPath + '/root.auth'),
         subRoutes: {
-            '/signin': {
-                name: 'signin',
+            '/login': {
+                name: 'login',
                 component: require(authPath + '/login.auth')
             },
             '/signup': {

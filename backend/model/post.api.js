@@ -9,32 +9,19 @@ let MessageSchema = mongoose.Schema({
     },
     title: String,
     text: String,
-    likes: Number
+    likes: [{
+        
+    }]
 });
 
-MessageSchema.methods = {
-    delete(req, res) {
+MessageSchema.statics = {
+    deleteMessage(req, res) {
         this.find(res.body.id)
             .then(message => {
                 message.remove();
             });
     },
-    update(req, res) {
-        this.find(req.body.messageId)
-            .then(message => {
-                message.update({
-                    to: req.body.toId,
-                    from: req.body.fromId,
-                    title: req.body.title,
-                    text: req.body.text
-                });
-                res.json({
-                    success: true,
-                    messageData: message
-                });
-            }, errorHandler(res));
-    },
-    create(req, res) {
+    sendMessage(req, res) {
         this.create({
             to: req.body.toId,
             from: req.body.fromId,
@@ -51,15 +38,16 @@ MessageSchema.methods = {
 };
 
 //A P I
+let auth = require('../middleware/auth');
 module.exports = function(express) {
 
     let api = express.Router();
-    api.get('/message', (req, res) => {
+    api.use(auth.checkToken);
+    api.get('/getDefaultMessage', (req, res) => {
         res.json({
             title: 'Title',
             text: 'Message',
-            to: 'Stas',
-            from: 'Ann',
+
         });
     });
 
