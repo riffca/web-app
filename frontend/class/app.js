@@ -28,8 +28,8 @@ export default class App {
                 password: password
             });
     }
-    deleteAccout(){
-
+    deleteAccout({email}){
+        
     }
 
     //Функции получения
