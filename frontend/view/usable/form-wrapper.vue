@@ -18,6 +18,8 @@ export default {
 #form-wrapper {
 	max-width: 60%;
 	margin: 0 auto;
+	padding: 10px;
+	background: lighten(grey,44%);
 	form {
 		max-width: 300px;
 		margin: inherit;
@@ -52,8 +54,10 @@ export default {
 			height: 30px;
 			width: 100px;
 			&:focus,
-			&:active{
-				outline: none;
+			&:active,
+			&:hover{
+				
+				outline: 0;
 				box-shadow: none;
 			}
 		}

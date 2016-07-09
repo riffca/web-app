@@ -2,7 +2,7 @@
 	<div id="login">
 		<h1>Вход в приложение</h1>		
 		<form-wrapper>		
-			<form @submit.prevent="createUser()">
+			<form @submit.prevent="login()">
 				<div class="input-control">
 					<label for="email">Почта</label>
 					<input type="text" id="email" v-model="email">
@@ -25,6 +25,16 @@ export default {
     	email:'',
     	password:''
     };
+  },
+  methods:{
+  	login(){
+  		this.$root.app.loginAccount({
+  			email: this.email,
+  			password: this.password
+  		}).then(res=>{
+  			alert(res.data.message);
+  		})
+  	}
   }
 };
 </script>

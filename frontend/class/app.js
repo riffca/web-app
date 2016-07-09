@@ -7,25 +7,31 @@ export default class App {
         this.location = this.getLocation();
         this.created = Date.now('M-h');
     }
-    signupUser({
+    //A U T H 
+    createAccount({
+        username,
         email,
         password
     }){
-        return Vue.http.post('/api/user/signup',{
+        return Vue.http.post('/api/user/create-account',{
                 username: username,
                 email: email,
                 password: password
             });
     }
-    loginUser({
+    loginAccount({
         email,
         password
     }){
-        return Vue.http.post('/api/user/login',{
+        return Vue.http.post('/api/user/login-account',{
                 email: email,
                 password: password
             });
     }
+    deleteAccout(){
+
+    }
+
     //Функции получения
     getImage(path) {
         return this.find(path);

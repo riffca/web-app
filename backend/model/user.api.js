@@ -5,28 +5,33 @@ let auth = require('../middleware/auth');
 module.exports = function(express) {
     let api = express.Router();
     //create user
-    api.post('/signup', (req, res) => {
+    api.post('/create-account', (req, res) => {
         let user = new User({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            username: req.body.username
         });
         auth.createToken(user, 'New user has been created')
             .then(token => {
                 user.save(err => {
                     if (err) {
-                        res.send(err);
+                        res.json({
+                            error: err,
+                            message: "Ошибка валидации",
+                            success: false
+                        });
                         return;
                     }
                     res.json({
                         success: true,
-                        message: "New user has been created",
+                        message: "Новый аккаут успешно создан",
                         token: token
                     });
                 });
             });
     });
     //login user
-    api.post('/login', (req, res) => {
+    api.post('/login-account', (req, res) => {
         User
             .findOne({
                 username: req.body.email

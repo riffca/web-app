@@ -35,12 +35,11 @@ export default {
   },
   methods: {
   	createUser(){
-  		this.$root.app.signupUser({
+  		this.$root.app.createAccount({
   			email: this.email,
   			password: this.password
-  			}).then(data=>{
-
-
+  			}).then(res=>{
+  				console.log(res.data.message);
   			});
   	}
   }
