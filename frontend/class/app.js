@@ -28,11 +28,25 @@ export default class App {
         return Vue.http.post(this.serverDynamic + '/api/user/login-account',{
                 email: email,
                 password: password
+            }).then(res=>{
+                tokenService.setToken(res.data.token);
+                return res.data;
             });
     }
     getUser(){
-        return Vue.http.post(this.serverDynamic + '/api/user/get-current-user');
+        return Vue.http
+        .get(this.serverDynamic + '/api/user/get-current-user')
+        .then(res=>{
+            return res.data;
+        });
     }
+
+
+
+
+
+
+    // I D E A S
     deleteAccout({email}){
         
     }

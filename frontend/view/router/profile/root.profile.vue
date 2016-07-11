@@ -32,9 +32,9 @@ export default {
     };
   },
   asyncData(resolve, reject){
-  	let app = this.$root.app.getUser();
+  	let app = this.$root.app;
   	app.getUser().then(data=>{
-  		reject({
+  		resolve({
   			username: data.username
   		})
   	});

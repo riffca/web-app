@@ -91,6 +91,10 @@ module.exports = function(express) {
     api.get('/get-current-user', (req, res) => {
         res.json(res.decodedToken);
     });
+
+
+
+    //I D E A S 
     api.post('/updateCurrentUser', (req, res) => {
         User.findOne(req.body.userId)
             .then(user => {

@@ -29,7 +29,7 @@ export default {
   }, 
   data () {
     return {
-      uknowUser: "Web App",
+      brand: "Web App",
       basket: '',
       app: '',
       user: ''
@@ -38,23 +38,29 @@ export default {
   asyncData(resolve, reject){
     //Создаем приложение
     let app = new App();
+/*    app.authCheck().then(data=>{
+
+    });*/
     logger('(Create app object)App',()=>{
       console.log(jsonHelper(app));
     })
+    resolve({
+      app: app
+    })
     //Получаем пользователя
-    app.getDefaultUser().then(response=>{
-        let uknowUser = new User(response.data)
-        app.user = user;
-        resolve({
-          uknowUser: uknowUser,
-          app: app
-        });
-        //Logger
-        logger('(Create app object)User',()=>{
-          console.log(jsonHelper(user)); 
-        });  
+    // app.getUser().then(response=>{
+    //     let user = new User(response.data)
+    //     app.user = user;
+    //     resolve({
+    //       user: user,
+    //       app: app
+    //     });
+    //     //Logger
+    //     logger('(Create app object)User',()=>{
+    //       console.log(jsonHelper(user)); 
+    //     });  
 
-    }, err => {logger(err)});
+    // }, err => {logger(err)});
   }
 };
 </script>

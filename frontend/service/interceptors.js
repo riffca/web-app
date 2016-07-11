@@ -18,9 +18,12 @@ export default function () {
         },
         response: (response) => {
             clearTimeout(timeId);
+
+
             logger('Http response!', ()=>{
                 console.log(response.data);
             });
+            //траблы если передавать response.data
             return response;
         }
     };
