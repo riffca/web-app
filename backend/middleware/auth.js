@@ -26,11 +26,11 @@ module.exports = {
             next();
         });
     },
-    createToken(user, message) {
+    createToken(user) {
         return new Promise((resolve, reject) => {
             jwt.sign({
                 id: user._id,
-                name: user.name,
+                username: user.username,
                 email: user.email
             }, secretKey, {
                 expiresIn: '10h'

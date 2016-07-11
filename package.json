@@ -11,6 +11,7 @@
   "scripts": {
     "push": "git push -u origin master",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "SET DEBUG=http && nodemon backend/server.js",
     "nodeserver": "nodemon backend/server.js",
     "phpserver": "SET PHP=true && webpack -w",
     "phpbuild": "SET PHP=true && SET NODE_ENV=production && webpack",
@@ -54,6 +55,7 @@
     "jsonwebtoken": "^7.0.1",
     "log4js": "^0.6.37",
     "mongoose": "^4.5.0",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "^1.7.0",
     "multer": "^1.1.0",
     "vue": "^1.0.24",

@@ -2,6 +2,9 @@
 let bcrypt = require('bcrypt-nodejs');
 //M O D E L
 let mongoose = require('mongoose');
+//plugin
+let uniqueValidator = require('mongoose-unique-validator');
+
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let UserSchema = mongoose.Schema({
     //Username
@@ -33,7 +36,8 @@ let UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        maxlength: 400
+        maxlength: 400,
+        unique: true
     },
     password: {
         type: String,
@@ -55,26 +59,35 @@ let UserSchema = mongoose.Schema({
         ref: 'Post'
     }]
 });
+//P L U G I N
+UserSchema.plugin(uniqueValidator);
 //M O D E L  M I D D L E W A R E
-UserSchema.pre('save', next => {
-    let user = this;
-    //if(!user.isModified('password')) return next();
-    bcrypt.hash(user.password, null, null, (err, hash) => {
-        if (err) next(err);
+UserSchema.pre('save', function(next) {
+    var user = this;
+    if (!user.isModified('password')) return next();
+
+    bcrypt.hash(user.password, null, null, function(err, hash) {
+        if (err) return next(err);
+
         user.password = hash;
+        next();
     });
-    next();
 });
 //M O D E L  M E T H O D S
 UserSchema.methods = {
     comparePassword(password) {
-        console.log(this);
         let user = this;
-        return bcrypt.compare(password, user.password, (err, res) => {
-            if (err) console.log('Ошибка в user.comparePassword - ' + err);
-            return res;
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, user.password, function(err, res) {
+                if (err) {
+                    console.log('Ошибка в user.comparePassword - ' + err);
+                    reject(err);
+                }
+                resolve(res);
+            });
         });
     }
 };
+
 
 module.exports = mongoose.model('User', UserSchema);

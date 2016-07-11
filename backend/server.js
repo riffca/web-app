@@ -1,7 +1,9 @@
 "use strict";
 let express = require('express');
 
-// D A T A B A S E
+//
+//D A T A B A S E
+//
 let mongoose = require('mongoose');
 
 function timeStampsPlugin(schema, options) {
@@ -34,7 +36,9 @@ mongoose.connect('localhost:27017', err => {
     console.log('Database connected');
 });
 
-// E X P R E S S
+//
+//E X P R E S S 
+//
 let app = new express();
 
 //P A R S E  B O D Y
@@ -49,9 +53,8 @@ let interceptor = require('express-interceptor');
 let finalInterceptor = interceptor((req, res) => {
     return {
         isInterceptable() {
-            console.log(req.method + ' ' + req.url);
-            console.log({message: 'get data', data: req.body});
-
+            debug(req.method + ' ' + req.url);
+            debug({data: req.body});
         },
         intercept(body, send) {}
     };

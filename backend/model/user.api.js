@@ -11,26 +11,25 @@ module.exports = function(express) {
             password: req.body.password,
             username: req.body.username
         });
-        auth.createToken(user, 'New user has been created')
-            .then(token => {
-                user.save(err => {
-                    if (err) {
-                        res.json({
-                            error: err,
-                            message: "Ошибка валидации",
-                            success: false
-                        });
-                        return;
-                    }
+        user.save(err => {
+            if (err) {
+                res.json({
+                    error: err,
+                    message: "Пользователь с таким именем уже существует",
+                    success: false
+                });
+                return;
+            }
+            auth.createToken(user)
+                .then(token => {
                     res.json({
                         success: true,
                         message: "Новый аккаут успешно создан",
-                        token: token
+                        token: token,
+                        user: user
                     });
-                    console.log({message: "Новый аккаут успешно создан",
-                                 user: user});
                 });
-            });
+        });
     });
     //login user
     api.post('/login-account', (req, res) => {
@@ -38,6 +37,7 @@ module.exports = function(express) {
             .findOne({
                 email: req.body.email
             })
+            //выбираем name username password чтобы передать их дальше
             .select('name username email password')
             .exec((err, user) => {
                 if (err) throw err;
@@ -49,25 +49,25 @@ module.exports = function(express) {
                     });
                     return;
                 } else if (user) {
-                    let password = JSON.stringify(req.body.password);
-                    let answer = user.comparePassword(password);
-                    console.log(answer);
-                    if (!answer) {
-                        res.send({
-                            message: "Ошибка! Неверный пароль.",
-                            success: false,
-                            password: password
-                        });
-                        return;
-                    } else {
-                        auth.createToken(user).then(token => {
-                            res.json({
-                                success: true,
-                                message: "Успешный вход в приложение",
-                                token: token
+                    let password = req.body.password;
+                    user.comparePassword(password).then(answer => {
+                        if (!answer) {
+                            res.send({
+                                message: "Ошибка! Неверный пароль.",
+                                success: false,
+                                user: user
                             });
-                        });
-                    }
+                            return;
+                        } else {
+                            auth.createToken(user).then(token => {
+                                res.json({
+                                    success: true,
+                                    message: "Успешный вход в приложение",
+                                    token: token
+                                });
+                            });
+                        }
+                    });
                 }
             });
     });
