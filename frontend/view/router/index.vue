@@ -1,9 +1,7 @@
 <template>
- 
 	<index-services>
 		<pre>
 			Муз школа "Простые мелодии"
-			гр
 		</pre>
 		<index-service>
 		  <svg-icon img="guitar"></svg-icon>

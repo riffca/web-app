@@ -78,7 +78,7 @@ module.exports = {
             }) 
         }),
         new webpack.ProvidePlugin({
-            logger: path.join(frontend,'helper', 'logger.js'),
+            logger: path.join(frontend,'help', 'logger.js'),
             Vue: 'vue'
             //fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
             //Dinamics: 'dynamics'

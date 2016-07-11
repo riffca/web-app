@@ -18,6 +18,10 @@ export default class Message {
 		this.created = created;
 		this.updated =updated;
 	}
+	editOwner(){
+
+		
+	}
 	delete(){
 		return Vue.http.delete('/api/message/delete',{_id: this.id});
 	}
