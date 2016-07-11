@@ -50,7 +50,7 @@ let finalInterceptor = interceptor((req, res) => {
     return {
         isInterceptable() {
             console.log(req.method + ' ' + req.url);
-            console.log(req.body);
+            console.log({message: 'get data', data: req.body});
 
         },
         intercept(body, send) {}

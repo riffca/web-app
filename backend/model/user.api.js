@@ -27,6 +27,8 @@ module.exports = function(express) {
                         message: "Новый аккаут успешно создан",
                         token: token
                     });
+                    console.log({message: "Новый аккаут успешно создан",
+                                 user: user});
                 });
             });
     });
@@ -36,7 +38,7 @@ module.exports = function(express) {
             .findOne({
                 email: req.body.email
             })
-            .select('name username email')
+            .select('name username email password')
             .exec((err, user) => {
                 if (err) throw err;
                 if (!user) {
@@ -47,25 +49,25 @@ module.exports = function(express) {
                     });
                     return;
                 } else if (user) {
-                    user.comparePassword(req.body.password)
-                        .then(answer => {
-                            if (!answer) {
-                                res.send({
-                                    message: "Ошибка! Неверный пароль.",
-                                    success: false,
-                                    password: req.body.password
-                                });
-                                return;
-                            } else {
-                                auth.createToken(user).then(token => {
-                                    res.json({
-                                        success: true,
-                                        message: "Успешный вход в приложение",
-                                        token: token
-                                    });
-                                });
-                            }
+                    let password = JSON.stringify(req.body.password);
+                    let answer = user.comparePassword(password);
+                    console.log(answer);
+                    if (!answer) {
+                        res.send({
+                            message: "Ошибка! Неверный пароль.",
+                            success: false,
+                            password: password
                         });
+                        return;
+                    } else {
+                        auth.createToken(user).then(token => {
+                            res.json({
+                                success: true,
+                                message: "Успешный вход в приложение",
+                                token: token
+                            });
+                        });
+                    }
                 }
             });
     });

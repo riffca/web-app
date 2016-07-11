@@ -60,7 +60,7 @@ UserSchema.pre('save', next => {
     let user = this;
     //if(!user.isModified('password')) return next();
     bcrypt.hash(user.password, null, null, (err, hash) => {
-        if (err) return next(err);
+        if (err) next(err);
         user.password = hash;
     });
     next();
@@ -68,11 +68,11 @@ UserSchema.pre('save', next => {
 //M O D E L  M E T H O D S
 UserSchema.methods = {
     comparePassword(password) {
-        return new Promise((resolve, reject) => {
-            bcrypt.compare(password, this.password, (err, res) => {
-                if (err) return reject(err);
-                resolve(res);
-            });
+        console.log(this);
+        let user = this;
+        return bcrypt.compare(password, user.password, (err, res) => {
+            if (err) console.log('Ошибка в user.comparePassword - ' + err);
+            return res;
         });
     }
 };

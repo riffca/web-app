@@ -32,7 +32,7 @@ export default {
   			email: this.email,
   			password: this.password
   		}).then(res=>{
-  			alert(res.data.message);
+  			//alert(res.data.message);
   		})
   	}
   }

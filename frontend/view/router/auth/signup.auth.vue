@@ -37,9 +37,10 @@ export default {
   	createUser(){
   		this.$root.app.createAccount({
   			email: this.email,
-  			password: this.password
+  			password: this.password,
+  			username: this.username
   			}).then(res=>{
-  				alert(res.data.message);
+  				//alert(res.data.message);
   			});
   	}
   }
