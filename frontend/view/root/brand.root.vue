@@ -10,7 +10,6 @@
 		</h1>
 		<div class="links-wrapper">
 			<a v-link="{name: 'contacts'}">Контакты</a>
-			<a v-link="{name: 'index'}">Индекс</a>
 			<a v-link="{name: 'auth'}">Регистрация</a>
 			<a v-link="{name: 'profile'}">Профиль</a>
 			<a v-link="{name: 'admin'}">Admin</a>  

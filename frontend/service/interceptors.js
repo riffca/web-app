@@ -9,11 +9,16 @@ export default function () {
             request.headers = {
                 'x-access-token': token.getToken() || ''
             };
+            logger('Http request!', ()=>{
+                console.log(request.data);
+            });
+            logger(request.method + ' ' + request.url);
+
             return request;
         },
         response: (response) => {
             clearTimeout(timeId);
-            logger('Get http data!', ()=>{
+            logger('Http response!', ()=>{
                 console.log(response.data);
             });
             return response;

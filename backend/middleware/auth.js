@@ -9,14 +9,14 @@ module.exports = {
         if (!token) {
             res.json({
                 success: false,
-                message: 'No Token Provided'
+                message: 'Ошибка! No Token Provided'
             });
             return;
         }
         jwt.verify(token, secretKey, (err, decoded) => {
             if (err) {
                 res.json({
-                    message: 'bad Token Provided',
+                    message: 'Ошибка! Bad Token Provided',
                     success: false,
                     error: err
                 });

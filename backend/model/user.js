@@ -4,10 +4,12 @@ let bcrypt = require('bcrypt-nodejs');
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 let UserSchema = mongoose.Schema({
+    //Username
     username: {
         type: String,
         maxlength: 400,
     },
+    //name
     name: {
         firstName: {
             type: String,
@@ -19,10 +21,12 @@ let UserSchema = mongoose.Schema({
             maxlength: 400
         }
     },
+    //age
     age: {
         type: Number,
         max: 1000
     },
+    //location
     location: {
         type: String,
         maxLength: 400
@@ -64,9 +68,11 @@ UserSchema.pre('save', next => {
 //M O D E L  M E T H O D S
 UserSchema.methods = {
     comparePassword(password) {
-        return bcrypt.compare(password, this.password, (err, res) => {
-            if (err) return err;
-            return res;
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, this.password, (err, res) => {
+                if (err) return reject(err);
+                resolve(res);
+            });
         });
     }
 };

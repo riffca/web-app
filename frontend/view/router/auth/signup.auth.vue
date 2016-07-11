@@ -39,7 +39,7 @@ export default {
   			email: this.email,
   			password: this.password
   			}).then(res=>{
-  				console.log(res.data.message);
+  				alert(res.data.message);
   			});
   	}
   }

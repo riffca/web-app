@@ -6,6 +6,8 @@ export default class App {
         this.user = user;
         this.location = this.getLocation();
         this.created = Date.now('M-h');
+        this.serverStatic = '';
+        this.serverDynamic = '';
     }
     //A U T H 
     createAccount({
@@ -13,7 +15,7 @@ export default class App {
         email,
         password
     }){
-        return Vue.http.post('/api/user/create-account',{
+        return Vue.http.post(this.serverDynamic + '/api/user/create-account',{
                 username: username,
                 email: email,
                 password: password
@@ -23,7 +25,7 @@ export default class App {
         email,
         password
     }){
-        return Vue.http.post('/api/user/login-account',{
+        return Vue.http.post(this.serverDynamic + '/api/user/login-account',{
                 email: email,
                 password: password
             });

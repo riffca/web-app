@@ -6,10 +6,6 @@ let profilePath = getPath('/profile');
 let authPath = getPath('/auth');
 let adminPath = getPath('/admin');
 export default {
-    '/': {
-        name: 'index',
-        component: require(routerPath + '/index')
-    },
     '/contacts': {
         name: 'contacts',
         component: require(routerPath + '/contacts')
@@ -18,8 +14,8 @@ export default {
         name: 'admin',
         component: require(adminPath + '/root.admin'),
         subRoutes: {
-            '/index': {
-                name: 'index.admin',
+            '/root': {
+                name: 'root.admin',
                 component: {
                     template: `1`
                 }

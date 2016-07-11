@@ -34,28 +34,38 @@ module.exports = function(express) {
     api.post('/login-account', (req, res) => {
         User
             .findOne({
-                username: req.body.email
+                email: req.body.email
             })
             .select('name username email')
             .exec((err, user) => {
                 if (err) throw err;
                 if (!user) {
-                    res.send({ message: "Некорректные данные" });
+                    res.send({
+                        message: "Ошибка! Некорректные данные.",
+                        user: user,
+                        success: false
+                    });
                     return;
                 } else if (user) {
-                    var validPassword = user.comparePassword(req.body.password);
-                    if (!validPassword) {
-                        res.send({ message: "Неверный пароль" });
-                        return;
-                    } else {
-                        auth.createToken(user).then(token => {
-                            res.json({
-                                success: true,
-                                message: "Successfully login",
-                                token: token
-                            });
+                    user.comparePassword(req.body.password)
+                        .then(answer => {
+                            if (!answer) {
+                                res.send({
+                                    message: "Ошибка! Неверный пароль.",
+                                    success: false,
+                                    password: req.body.password
+                                });
+                                return;
+                            } else {
+                                auth.createToken(user).then(token => {
+                                    res.json({
+                                        success: true,
+                                        message: "Успешный вход в приложение",
+                                        token: token
+                                    });
+                                });
+                            }
                         });
-                    }
                 }
             });
     });
@@ -77,24 +87,24 @@ module.exports = function(express) {
         });
     });
     api.use(auth.verifyToken);
-    api.get('/getCurrentUser',(req, res) => {
+    api.get('/getCurrentUser', (req, res) => {
         res.json(res.decodedToken);
     });
-    api.post('/updateCurrentUser',(req,res)=>{
+    api.post('/updateCurrentUser', (req, res) => {
         User.findOne(req.body.userId)
-        .then(user =>{
-            user.update({
-                contactPhone: req.body.contactPhone,
-                username: req.body.username,
-                age: req.body.age,
-            }).then(modefiedUser=>{
-                res.json({
-                    success: true,
-                    message: 'User has been modefied',
-                    modefiedUser: modefiedUser
+            .then(user => {
+                user.update({
+                    contactPhone: req.body.contactPhone,
+                    username: req.body.username,
+                    age: req.body.age,
+                }).then(modefiedUser => {
+                    res.json({
+                        success: true,
+                        message: 'User has been modefied',
+                        modefiedUser: modefiedUser
+                    });
                 });
             });
-        });
     });
     return api;
 };

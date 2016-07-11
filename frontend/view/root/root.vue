@@ -3,8 +3,8 @@
 <template>
 	  <brand-root></brand-root>
     <router-view :user="user" :app="app"></router-view>
-    <basket-root :basket="basket"></basket-root>
-    <user-root :user="user"></user-root>
+    <!-- <basket-root :basket="basket"></basket-root>
+    <user-root :user="user"></user-root> -->
 </template>
 
 <script>

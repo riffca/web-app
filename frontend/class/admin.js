@@ -6,20 +6,14 @@ export default class Admin extends User {
 		this.name = 'riffca';
 		this.email = 'riffca@ya.ru';
 	}
-
 	turnOnApplication(){
-
 	}
 	turnOffapplication(){
-
 	}
 	getUser(id){
-
 	}
 	addUser({name, password, email}){
-
 	}
 	deleteUser(){
-
 	}
 }
