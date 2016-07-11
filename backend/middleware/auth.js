@@ -41,6 +41,8 @@ module.exports = {
         });
 
     },
+
+    //Тестовая функция
     authCheck(req, res, next) {
         let authToken = 'secret';
         let token = req.headers['x-access-token'];

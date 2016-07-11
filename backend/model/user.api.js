@@ -15,7 +15,7 @@ module.exports = function(express) {
             if (err) {
                 res.json({
                     error: err,
-                    message: "Пользователь с таким именем уже существует",
+                    message: "Пользователь с таким @email уже существует",
                     success: false
                 });
                 return;
@@ -25,8 +25,7 @@ module.exports = function(express) {
                     res.json({
                         success: true,
                         message: "Новый аккаут успешно создан",
-                        token: token,
-                        user: user
+                        token: token
                     });
                 });
         });
@@ -89,7 +88,7 @@ module.exports = function(express) {
         });
     });
     api.use(auth.verifyToken);
-    api.get('/getCurrentUser', (req, res) => {
+    api.get('/get-current-user', (req, res) => {
         res.json(res.decodedToken);
     });
     api.post('/updateCurrentUser', (req, res) => {

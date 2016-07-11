@@ -1,11 +1,12 @@
 <template>
 	<div id="profile">
-		<h1>Профиль</h1>
+		<h3>Профиль</h3>
+		<h2>{{username}}</h2>
 		<nav-links>
 			<div class="links-wrapper">
 				<a v-link="{name: 'userProfile',params: {username: 'stas'}}">Info</a>
-				<a v-link="{name: 'messagesProfile'}">Сообщения</a>
-				<a v-link="{name: 'albumProfile'}">Фото</a>
+				<a v-link="">Сообщения</a>
+				<a v-link="">Фото</a>
 		    </div>	
 		<nav-links>
 		<router-view></router-view>
@@ -27,8 +28,16 @@ export default {
 
   data () {
     return {
-
+    	username: ''
     };
+  },
+  asyncData(resolve, reject){
+  	let app = this.$root.app.getUser();
+  	app.getUser().then(data=>{
+  		reject({
+  			username: data.username
+  		})
+  	});
   }
 };
 </script>

@@ -29,7 +29,7 @@ export default {
   }, 
   data () {
     return {
-      name: "Web App",
+      uknowUser: "Web App",
       basket: '',
       app: '',
       user: ''
@@ -38,45 +38,23 @@ export default {
   asyncData(resolve, reject){
     //Создаем приложение
     let app = new App();
+    logger('(Create app object)App',()=>{
+      console.log(jsonHelper(app));
+    })
     //Получаем пользователя
-    app.getUser().then(response=>{
-        let user = new User(response.data)
+    app.getDefaultUser().then(response=>{
+        let uknowUser = new User(response.data)
         app.user = user;
         resolve({
-          user: user,
-          app: app,
-          basket: user.basket
+          uknowUser: uknowUser,
+          app: app
         });
         //Logger
-        logger('(Create app object)App',()=>{
-          console.log(jsonHelper(app));
-        })
         logger('(Create app object)User',()=>{
           console.log(jsonHelper(user)); 
         });  
 
     }, err => {logger(err)});
-    // Vue.http('/api/user').then(response=>{
-    //   //Objects
-    //   let user = new User(response.data);
-    //   let app = new App({user: user});
-
-    //   //вложенный объект user не логгится как данные
-    //   logger('(app object)App',()=>{
-    //     console.log(app);
-    //   })
-    //   logger('(app object)User',()=>{
-    //     console.log(user);
-    //   });
-    //   //Resolve
-    //   resolve({
-    //     user: user,
-    //     app: app,
-    //     basket: user.basket
-    //   })
-    //   //Errors
-    // },err=>{console.log(err)});
-
   }
 };
 </script>

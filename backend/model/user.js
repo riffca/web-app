@@ -12,6 +12,15 @@ let UserSchema = mongoose.Schema({
         type: String,
         maxlength: 400,
     },
+    email: {
+        type: String,
+        maxlength: 400,
+        unique: true
+    },
+    password: {
+        type: String,
+        maxlength: 400
+    },
     //name
     name: {
         firstName: {
@@ -34,30 +43,10 @@ let UserSchema = mongoose.Schema({
         type: String,
         maxLength: 400
     },
-    email: {
-        type: String,
-        maxlength: 400,
-        unique: true
-    },
-    password: {
-        type: String,
-        maxlength: 400
-    },
     contactPhone: {
         type: String,
         maxlength: 400
-    },
-    basket: {
-        type: String
-    },
-    messages: [{
-        type: ObjectId,
-        ref: 'Message'
-    }],
-    posts: [{
-        type: ObjectId,
-        ref: 'Post'
-    }]
+    }
 });
 //P L U G I N
 UserSchema.plugin(uniqueValidator);

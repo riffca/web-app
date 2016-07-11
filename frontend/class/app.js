@@ -30,6 +30,9 @@ export default class App {
                 password: password
             });
     }
+    getUser(){
+        return Vue.http.post(this.serverDynamic + '/api/user/get-current-user');
+    }
     deleteAccout({email}){
         
     }
@@ -38,7 +41,7 @@ export default class App {
     getImage(path) {
         return this.find(path);
     }
-    getUser(id = '') {
+    getDefaultUser(id = '') {
         return this.find('/api/user/getDefaultUser' + id);
     }
     getPost(path) {
