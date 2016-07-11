@@ -1,12 +1,11 @@
 <template>
 	<div id="profile">
 		<h3>Профиль</h3>
-		<h2>{{username}}</h2>
+		<h2>Hello {{username}}</h2>
 		<nav-links>
 			<div class="links-wrapper">
 				<a v-link="{name: 'userProfile',params: {username: 'stas'}}">Info</a>
-				<a v-link="">Сообщения</a>
-				<a v-link="">Фото</a>
+        <a v-link="{name: 'posts'}">Посты</a>
 		    </div>	
 		<nav-links>
 		<router-view></router-view>
