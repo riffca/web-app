@@ -7,13 +7,14 @@
 <script>
 export default {
   props: ['post']
-  data () {
-    return {
-
-    };
-  }
 };
 </script>
 
 <style lang="sass">
+#post {
+	margin: 0 auto;
+	max-width: 400px;
+	background: lighten(black,30%); 
+}
+
 </style>

@@ -14,7 +14,7 @@ import jsonHelper from '../../help/json';
 //html части
 import UserRoot from './user.root';
 import BasketRoot from './basket.root';
-import BrandRoot from './brand.root';
+import BrandRoot from './brand-root';
 
 //классы
 import App from '../../class/app';
@@ -47,20 +47,24 @@ export default {
     resolve({
       app: app
     })
+    /**************
+    /*C O M M E N T
+    /*Придумать когжда получатm юзера в рут
+    */
     //Получаем пользователя
-    app.getUser().then(response=>{
-        let user = new User(response.data)
-        app.user = user;
-        resolve({
-          user: user,
-          app: app
-        });
-        //Logger
-        logger('(Create app object)User',()=>{
-          console.log(jsonHelper(user)); 
-        });  
+    // app.getUser().then(response=>{
+    //     let user = new User(response.data)
+    //     app.user = user;
+    //     resolve({
+    //       user: user,
+    //       app: app
+    //     });
+    //     //Logger
+    //     logger('(Create app object)User',()=>{
+    //       console.log(jsonHelper(user)); 
+    //     });  
 
-    }, err => {logger(err)});
+    // }, err => {logger(err)});
   }
 };
 </script>

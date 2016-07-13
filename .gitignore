@@ -1,4 +1,4 @@
 node_modules/
 php/vendor/
 backend/media/
-php/.env
+npm-debug.log

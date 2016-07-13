@@ -10,7 +10,6 @@ export default class User {
         basket = '',
         auth = false
     }) {
-
         this.id = id;
         this.name = name;
         this.auth = auth;
