@@ -4,10 +4,12 @@
 		<h2>Hello {{username}}</h2>
 		<nav-links>
 			<div class="links-wrapper">
-				<a v-link="{name: 'userProfile',params: {username: 'stas'}}">Info</a>
+				<a v-link="{name: 'messages'}">Сообщения</a>
         <a v-link="{name: 'posts'}">Посты</a>
+        <a v-link="{name: 'projects'}">Проекты</a>
 		    </div>	
 		<nav-links>
+    {{ user | json}}
 		<router-view></router-view>
 	</div>
 </template>
@@ -27,14 +29,16 @@ export default {
 
   data () {
     return {
-    	username: ''
+    	username: '',
+      user: ''
     };
   },
   asyncData(resolve, reject){
   	let app = this.$root.app;
-  	app.getUser().then(data=>{
+  	app.getUser().then(user=>{
   		resolve({
-  			username: data.username
+  			username: user.username,
+        user: user
   		})
   	});
   }

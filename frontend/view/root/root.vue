@@ -9,7 +9,7 @@
 
 <script>
 //helper
-import jsonHelper from '../../helper/json';
+import jsonHelper from '../../help/json';
 
 //html части
 import UserRoot from './user.root';
@@ -48,19 +48,19 @@ export default {
       app: app
     })
     //Получаем пользователя
-    // app.getUser().then(response=>{
-    //     let user = new User(response.data)
-    //     app.user = user;
-    //     resolve({
-    //       user: user,
-    //       app: app
-    //     });
-    //     //Logger
-    //     logger('(Create app object)User',()=>{
-    //       console.log(jsonHelper(user)); 
-    //     });  
+    app.getUser().then(response=>{
+        let user = new User(response.data)
+        app.user = user;
+        resolve({
+          user: user,
+          app: app
+        });
+        //Logger
+        logger('(Create app object)User',()=>{
+          console.log(jsonHelper(user)); 
+        });  
 
-    // }, err => {logger(err)});
+    }, err => {logger(err)});
   }
 };
 </script>

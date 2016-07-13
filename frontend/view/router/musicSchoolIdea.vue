@@ -16,8 +16,6 @@
 		<svg-icon img="violin"></svg-icon>
 		</index-service>	
 	</index-services>
-
-
 </template>
 
 <script>

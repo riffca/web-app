@@ -6,9 +6,43 @@ let profilePath = getPath('/profile');
 let authPath = getPath('/auth');
 let adminPath = getPath('/admin');
 export default {
-    '/contacts': {
-        name: 'contacts',
-        component: require(routerPath + '/contacts')
+    '/auth': {
+        name: 'auth',
+        component: require(authPath + '/root.auth'),
+        subRoutes: {
+            '/login': {
+                name: 'login',
+                component: require(authPath + '/login.auth')
+            },
+            '/signup': {
+                name: 'signup',
+                component: require(authPath + '/signup.auth')
+            }
+        }
+    },
+    '/profile': {
+        name: 'profile',
+        component: require(profilePath + '/root.profile'),
+        subRoutes: {
+            '/messages': {
+                name: 'messages',
+                component: {
+                    template: '<h2>Сообщения</h2>'
+                }
+            },
+            '/posts': {
+                name: 'posts',
+                component: {
+                    template: '<h2>Посты</h2>'
+                }
+            },
+            '/projects': {
+                name: 'projects',
+                component: {
+                    template: `<h2>Проекты</h2>`
+                }
+            }
+        }
     },
     '/admin': {
         name: 'admin',
@@ -40,36 +74,4 @@ export default {
             }
         }
     },
-    '/profile': {
-        name: 'profile',
-        component: require(profilePath + '/root.profile'),
-        subRoutes: {
-            // '/messages': {
-            //     name: 'messagesProfile',
-            //     component: require(profilePath + '/messages.profile'),
-            // },
-            '/:username': {
-                name: 'userProfile',
-                component: require(profilePath + '/user.profile'),
-            },
-            '/:username/:album': {
-                name: 'albumProfile',
-                component: require(profilePath + '/album.profile')
-            }
-        }
-    },
-    '/auth': {
-        name: 'auth',
-        component: require(authPath + '/root.auth'),
-        subRoutes: {
-            '/login': {
-                name: 'login',
-                component: require(authPath + '/login.auth')
-            },
-            '/signup': {
-                name: 'signup',
-                component: require(authPath + '/signup.auth')
-            }
-        }
-    }
 };

@@ -40,7 +40,6 @@ export default class App {
             return res.data;
         });
     }
-
     getLocation(){
     	return 'Russia';
     }
