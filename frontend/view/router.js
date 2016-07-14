@@ -7,7 +7,7 @@ let authPath = getPath('/auth');
 let adminPath = getPath('/admin');
 export default {
     '/auth': {
-        name: 'auth',
+        name: 'Регистрация',
         component: require(authPath + '/root.auth'),
         subRoutes: {
             '/login': {
@@ -21,7 +21,7 @@ export default {
         }
     },
     '/profile': {
-        name: 'profile',
+        name: 'Профиль',
         component: require(profilePath + '/root.profile'),
         subRoutes: {
             '/messages': {
@@ -45,7 +45,7 @@ export default {
         }
     },
     '/admin': {
-        name: 'admin',
+        name: 'Админка',
         component: require(adminPath + '/root.admin'),
         subRoutes: {
             '/root': {

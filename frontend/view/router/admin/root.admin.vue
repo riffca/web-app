@@ -1,7 +1,7 @@
 <template>
 	<div id="root-admin">
 		<h1>Админка</h1>
-		<nav-links>
+		<nav-links title="admin page">
 			<a v-link="{name: 'content.admin'}">Контент</a>
 			<a v-link="{name: 'statistic.admin'}">Статистика</a>
 			<a v-link="{name: 'users.admin'}">Пользователи</a>

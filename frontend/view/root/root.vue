@@ -1,8 +1,6 @@
-О П И С А Н И Е
-В root получаем ссылки на app и user в момент asyncData.
 <template>
-	  <brand-root></brand-root>
-    <router-view :user="user" :app="app"></router-view>
+	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
+    <router-view :user="user" :app="app" title="currentTitle"></router-view>
     <!-- <basket-root :basket="basket"></basket-root>
     <user-root :user="user"></user-root> -->
 </template>
@@ -29,10 +27,11 @@ export default {
   }, 
   data () {
     return {
-      brand: "Web App",
-      basket: '',
-      app: '',
-      user: ''
+      currentTitle: 'Главная', 
+      //brand: "Web App",
+      //basket: '',
+      //user: '',
+      app: ''
     };
   },
   asyncData(resolve, reject){

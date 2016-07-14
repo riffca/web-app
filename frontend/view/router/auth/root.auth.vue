@@ -1,16 +1,20 @@
 <template>
 <div id="auth">
 	<h1>Регистрация</h1>
-	<a v-link="{name: 'signup'}">Зарегистрироваться</a>
-	<a v-link="{name: 'login'}">Войти</a>
+	<nav-links title="auth page">
+		<a v-link="{name: 'signup'}">Зарегистрироваться</a>
+		<a v-link="{name: 'login'}">Войти</a>
+	</nav-links>
 	<router-view></router-view>
 </div>
 </template>
 
 <script>
 import appMixin from '../../mixin';
+import navLinks from '../../usable/nav-links';
 
 export default {
+  components: {navLinks},
   mixins:{appMixin},
   data () {
     return {
@@ -21,6 +25,5 @@ export default {
 
 <style lang="sass">
 #auth {
-	
 }
 </style>
