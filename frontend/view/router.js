@@ -1,4 +1,6 @@
-function getPath(path) {
+function getPath
+(path) 
+{
     return routerPath + path;
 }
 let routerPath = './router';

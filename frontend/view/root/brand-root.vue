@@ -23,8 +23,6 @@ export default {
   data () {
     return {
     	titles: [
-
-
     	]
     };
   },
