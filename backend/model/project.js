@@ -3,6 +3,7 @@ let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
 
 let ProjectSchema = mongoose.Schema({
+	creator: {type: ObjectId, ref: 'User'},
     title: String,
     description: String
 });

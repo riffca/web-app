@@ -7,14 +7,17 @@
 </template>
 
 <script>
-import Post from '../../usable/post'; 
+import PostComp from '../../usable/post'; 
 
 export default {
-  components: {Post},
+  components: {PostComp},
   data () {
     return {
 
     };
+  },
+  asyncData(resolve, reject){
+  	User.getAllPosts
   }
 };
 </script>

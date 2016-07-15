@@ -66,7 +66,9 @@ app.use(express.static(__dirname + '/public'));
 //A P I
 let userApi = require('./model/user.api')(express);
 app.use('/api/user', userApi);
-let messageApi = require('./model/message.api')(express);
+let postApi = require('./model/post')(express);
+app.use('/api/post',postApi);
+let messageApi = require('./model/message')(express);
 app.use('/api/message', messageApi);
 let projectApi = require('./model/project')(express);
 app.use('/api/project', projectApi);

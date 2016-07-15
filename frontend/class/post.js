@@ -30,7 +30,7 @@ export default class {
         });
     }
     update(id) {
-        return Vue.http.put(path + '/update-project',{
+        return Vue.http.put(path + '/update-post',{
             author: author,
             title: title,
             text: text

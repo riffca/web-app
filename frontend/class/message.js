@@ -3,15 +3,15 @@ const path = '/api/message';
 
 export default class {
     constructor({
-    	from,
-    	to,
+    	fromUser,
+    	toUser,
         title,
         text,
         created,
         updated
     }) {
-    	this.from = from;
-    	this.to = to;
+    	this.fromUser = fromUser;
+    	this.toUser = toUser;
         this.title = title;
         this.text = text;
         this.created = created;
@@ -25,14 +25,21 @@ export default class {
     }
     create() {
         return Vue.http.post(path + '/create-message', {
+            toUser: toUserId,
+            fromUser: fromUserId,
             title: title,
             text: text,
         });		
     }
     update() {
-        return Vue.http.put(path + '/create-project');
+        return Vue.http.put(path + '/update-project',{
+            toUser: toUserId,
+            fromUser: fromUserId,
+            title: title,
+            text: text,
+        });
     }
     delete() {
-        return Vue.http.delete(path + '/create-message');
+        return Vue.http.delete(path + '/delete-message');
     }
 }

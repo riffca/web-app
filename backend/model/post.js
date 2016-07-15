@@ -16,6 +16,7 @@ module.exports = function(express) {
 
     api.post('/create-post', (req, res) => {
         Post.create({
+            author: req.body.authorId,
             title: req.body.title,
             text: req.body.text
         }).then(doc=>{
@@ -23,9 +24,11 @@ module.exports = function(express) {
         });
     });
     
+
     api.get('/get-post/:id', (req, res) => {
         Post
         .findById(req.params.id)
+        .populate('author')
         .select('title text createdAt updatedAt')
         .then(doc=>{
             res.json(doc);

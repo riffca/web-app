@@ -3,8 +3,8 @@ let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
 
 let MessageSchema = mongoose.Schema({
-    to: {type: ObjectId, ref: 'User'},
-    from: {type: ObjectId, ref: 'User'},
+    toUser: {type: ObjectId, ref: 'User'},
+    fromFrom: {type: ObjectId, ref: 'User'},
     title: String,
     text: String
 });
@@ -17,6 +17,8 @@ module.exports = function(express) {
 
     api.post('/create-message', (req, res) => {
         Message.create({
+            toUser: req.body.toUserId,
+            fromUser: req.body.fromUserId,
             title: req.body.title,
             text: req.body.text
         }).then(doc=>{
