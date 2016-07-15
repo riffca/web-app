@@ -2,7 +2,6 @@ const serverName = 'localhost:3000';
 const path = '/api/message';
 
 export default class {
-    
     constructor({
     	from,
     	to,

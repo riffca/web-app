@@ -4,11 +4,13 @@ const path = '/api/post';
 export default class {
     
     constructor({
+        author,
         title,
         text,
         created,
         updated
     }) {
+        this.author= author;
         this.title = title;
         this.text = text;
         this.created = created;
@@ -22,14 +24,19 @@ export default class {
     }
     create() {
         return Vue.http.post(path + '/create-post', {
+            author: author,
             title: title,
-            text: text,
+            text: text
         });
     }
     update(id) {
-        return Vue.http.put(path + '/create-project');
+        return Vue.http.put(path + '/update-project',{
+            author: author,
+            title: title,
+            text: text
+        });
     }
     delete(id) {
-        return Vue.http.delete(path + '/create-post');
+        return Vue.http.delete(path + '/delete-post');
     }
 }
