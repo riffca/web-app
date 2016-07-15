@@ -68,6 +68,9 @@ let userApi = require('./model/user.api')(express);
 app.use('/api/user', userApi);
 let messageApi = require('./model/message.api')(express);
 app.use('/api/message', messageApi);
+let projectApi = require('./model/project')(express);
+app.use('/api/project', projectApi);
+
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');

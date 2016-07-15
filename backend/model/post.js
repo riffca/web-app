@@ -2,30 +2,29 @@
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
 
-let MessageSchema = mongoose.Schema({
-    to: {type: ObjectId, ref: 'User'},
-    from: {type: ObjectId, ref: 'User'},
+let PostSchema = mongoose.Schema({
+    author: {type: ObjectId, ref: 'User'},
     title: String,
     text: String
 });
 
-let Message = mongoose.model('message', MessageSchema);
+let Post = mongoose.model('Post', PostSchema);
 
 module.exports = function(express) {
-    
+
     let api = express.Router();
 
-    api.post('/create-message', (req, res) => {
-        Message.create({
+    api.post('/create-post', (req, res) => {
+        Post.create({
             title: req.body.title,
             text: req.body.text
         }).then(doc=>{
             res.send(doc);
         });
     });
-
-    api.get('/get-message/:id', (req, res) => {
-        Message
+    
+    api.get('/get-post/:id', (req, res) => {
+        Post
         .findById(req.params.id)
         .select('title text createdAt updatedAt')
         .then(doc=>{
@@ -33,8 +32,8 @@ module.exports = function(express) {
         });
     });
 
-    api.get('/get-message/all', (req, res) => {
-        Message
+    api.get('/get-post/all', (req, res) => {
+        Post
         .find()
         .skip(10)
         .limit(10)
@@ -44,8 +43,8 @@ module.exports = function(express) {
         });
     });
 
-    api.put('/update-message/:id', (req, res) => {
-        Message.findOneAndUpdate(req.params.id, {
+    api.put('/update-post/:id', (req, res) => {
+        Post.findOneAndUpdate(req.params.id, {
             title: req.body.title,
             text: req.body.text
         }).then(doc => {
@@ -53,12 +52,11 @@ module.exports = function(express) {
         });
     });
 
-    api.delete('/delete-message/:id', (req, res) => {
-        Message.remove(req.params.id).then(doc=>{
+    api.delete('/delete-post/:id', (req, res) => {
+        Post.remove(req.params.id).then(doc=>{
             res.json(doc);
         });
     });
 
-    return api;
-
+    return api; 
 };
