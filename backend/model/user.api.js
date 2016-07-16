@@ -88,7 +88,10 @@ module.exports = function(express) {
         });
     });
     api.use(auth.verifyToken);
-    api.get('/get-current-user', (req, res) => {
+    api.get('/check-auth',(req,res)=>{
+        
+    });
+    api.get('/get-auth-user', (req, res) => {
         res.json(res.decodedToken);
     });
     //I D E A S 
@@ -96,7 +99,6 @@ module.exports = function(express) {
         User.findOne(req.body.userId)
             .then(user => {
                 user.update({
-                    contactPhone: req.body.contactPhone,
                     username: req.body.username,
                     age: req.body.age,
                 }).then(modefiedUser => {

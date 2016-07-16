@@ -23,7 +23,7 @@ export default class {
     static getOne(id){
         return Vue.http.get(path + '/get-message/:id');
     }
-    static create() {
+    static create({toUser, fromUser, title, text}) {
         return Vue.http.post(path + '/create-message', {
             toUser: toUserId,
             fromUser: fromUserId,

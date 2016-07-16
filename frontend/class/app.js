@@ -1,15 +1,23 @@
 import tokenService from '../service/token';
-
+/**
+/*
+/*О П И С А Н И Е  П Р И Л О Ж Е Н И Я
+/*
+*/
 export default class App {
 
     constructor(user = {}) {
         this.user = user;
-        this.location = this.getLocation();
+        //this.location = this.getLocation();
         this.created = Date.now('M-h');
         this.serverStatic = '';
         this.serverDynamic = '';
     }
-    //A U T H 
+    /**
+    /*
+    /*Создание аккаунта
+    /*
+    */ 
     createAccount({
         username,
         email,
@@ -21,6 +29,11 @@ export default class App {
                 password: password
             });
     }
+    /**
+    /*
+    /*Вход в аккаунт
+    /*
+    */
     loginAccount({
         email,
         password
@@ -33,12 +46,14 @@ export default class App {
                 return res.data;
             });
     }
-    getLocation(){
-    	return 'Russia';
-    }
-    getUser(){
+    /**
+    /*
+    /*JWT token пользователя only
+    /*
+    */
+    getAuthUser(){
         return Vue.http
-        .get(this.serverDynamic + '/api/user/get-current-user')
+        .get(this.serverDynamic + '/api/user/get-auth-user')
         .then(res=>{
             return res.data;
         });

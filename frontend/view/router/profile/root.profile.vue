@@ -35,7 +35,7 @@ export default {
 
   	let app = this.$root.app;
 
-  	app.getUser().then(data=>{
+  	app.getAuthUser().then(data=>{
       let user = new User(data);
       
   		resolve({

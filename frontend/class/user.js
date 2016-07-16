@@ -1,5 +1,5 @@
 import tokenService from '../service/token';
-import Basket from './basket';
+//import Basket from './basket';
 
 import Post from './post';
 import Project from './project';
@@ -8,35 +8,41 @@ import Message from './message';
 export default class User {
     constructor({
         id = 1,
-        name = "guest",
+        username = "guest",
         password = '',
         email = '',
         basket = '',
         auth = false
     }) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.auth = auth;
         this.password = password;
         this.email = email;
         //this.basket = new Basket(basket);
     }
 
-    selfGet() {
-        return Vue.http('api/user/self-get');
+    checkAuth() {
+        let token = tokenService.getToken();
+        if(!token){
+            this.auth = false;
+            return false;
+        }
+        return Vue.http.post('/api/user/check-auth',{
+            token: token
+        }).then(res=>{
+            if(res.data.success === false){
+                return false;
+            }
+            return true;
+        });
     }
 
-    isAuth() {
-        let token = tokenService.getToken();
-        return Vue.http
-            .post('api/user/is-auth')
-            .then(res => {
-                if (!res.data.success) {
-                    return false;
-                }
-                return true;
-            });
-    }
+    /**
+    /*
+    /*A P I
+    /*
+    */
 
     // M E S S A G E api
 
@@ -48,21 +54,21 @@ export default class User {
             });
     }
     getMessage(messageId){
-        return Vue.http
-            .get('/api/message/get-message/'+ messageId)
+        return Message
+            .getOne(messageId)
             .then(res => {
                 return res.data;
             });
     }
-    sendMessage({ to, from, title, text }) {
+    sendMessage({ toUser, fromUser, title, text }) {
         let message = new Message({
             toUser: toUser,
             fromUser: fromUser,
             title: title,
             text: text
         });
-        return Vue.http
-            .post('/api/message/create-message', message)
+        return Message
+            .create(message)
             .then(res => {
                 return res.data.message;
             });
@@ -71,27 +77,27 @@ export default class User {
     // P O S T api
 
     getPostAll(){
-        return Vue.http
-            .get('/api/post/get-post/all')
+        return Post
+            .getAll()
             .then(res => {
                 return res.data;
             });
     }
     getPost(postId){
-        return Vue.http
-            .get('/api/post/get-post/'+postId)
+        return Post
+            .getOne(postId)
             .then(res => {
                 return res.data;
             });
     }
-    writePost({ title, text, author}) {
+    writePost({ title, text, authorId}) {
         let post = new Post({
             title: title,
             text: text,
-            author: author
+            author: authorId
         });
-        return Vue.http
-            .post('/api/post/create-post', post)
+        return Post
+            .create(post)
             .then(res => {
                 return res.data.post;
             });
@@ -100,29 +106,29 @@ export default class User {
     // P R O J E C T api
 
     getProjectAll(){
-        return Vue.http
-            .get('/api/project/get-project/all')
+        return Project
+            .getAll()
             .then(res => {
                 return res.data.message;
             });
     }
 
     getProject(projectId){
-        return Vue.http
-            .get('/api/project/get-project/'+projectId)
+        return Project
+            .getOne(projectId)
             .then(res => {
                 return res.data.message;
             });
     }
     createProject({ title, description }) {
-        let post = new Project({
+        let project = new Project({
             title: title,
             description: description
         });
-        return Vue.http
-            .post('/api/project/create-project', Project)
+        return Project
+            .create(project)
             .then(res => {
                 return res.data.project;
             });
-    }
+    }  
 }
