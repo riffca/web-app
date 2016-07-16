@@ -33,14 +33,14 @@ export default class App {
                 return res.data;
             });
     }
+    getLocation(){
+    	return 'Russia';
+    }
     getUser(){
         return Vue.http
         .get(this.serverDynamic + '/api/user/get-current-user')
         .then(res=>{
             return res.data;
         });
-    }
-    getLocation(){
-    	return 'Russia';
     }
 }
