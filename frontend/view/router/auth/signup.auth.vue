@@ -23,7 +23,7 @@
 
 <script>
 
-import formWrapper from '../../usable/form-wrapper';
+import formWrapper from '../../parts/form-wrapper';
 export default {
   components: { formWrapper },
   data () {

@@ -17,7 +17,7 @@
 	</div>
 </template>
 <script>
-import formWrapper from '../../usable/form-wrapper';
+import formWrapper from '../../parts/form-wrapper';
 export default {
   components:{formWrapper},
   data () {
@@ -32,7 +32,7 @@ export default {
   			email: this.email,
   			password: this.password
   		}).then(res=>{
-        this.$router.go({name: 'profile'});
+        this.$router.go({name: 'Профиль'});
   		})
   	}
   }

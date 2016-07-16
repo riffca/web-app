@@ -27,22 +27,18 @@ export default {
         component: require(profilePath + '/root.profile'),
         subRoutes: {
             '/messages': {
-                name: 'messages',
-                component: {
-                    template: '<h2>Сообщения</h2>'
-                }
+                name: 'Сообщения',
+                component: require(profilePath + '/message/messages.profile')
+
             },
             '/posts': {
-                name: 'posts',
-                component: {
-                    template: '<h2>Посты</h2>'
-                }
+                name: 'Посты',
+                component: require(profilePath + '/post/posts.profile')
             },
             '/projects': {
-                name: 'projects',
-                component: {
-                    template: `<h2>Проекты</h2>`
-                }
+                name: 'Проекты',
+                component: require(profilePath + '/project/projects.profile')
+
             }
         }
     },

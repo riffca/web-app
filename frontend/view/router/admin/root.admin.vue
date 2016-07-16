@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import navLinks from '../../usable/nav-links';
+import navLinks from '../../parts/nav-links';
 import appMixin from '../../mixin';
 
 export default {

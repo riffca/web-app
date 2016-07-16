@@ -3,9 +3,9 @@
 		<h1>Профиль</h1>
 		<h2>Привет {{username}}</h2>
     <nav-links title="profile page">
-      <a v-link="{name:'messages'}">Сообщения</a>
-      <a v-link="{name:'posts'}">Посты</a>
-      <a v-link="{name:'projects'}">Проекты</a>
+      <a v-link="{name:'Сообщения'}">Сообщения</a>
+      <a v-link="{name:'Посты'}">Посты</a>
+      <a v-link="{name:'Проекты'}">Проекты</a>
     </nav-links>
     {{ user | json}}
 		<router-view></router-view>
@@ -14,7 +14,7 @@
 
 <script>
 
-import navLinks from '../../usable/nav-links';
+import navLinks from '../../parts/nav-links';
 import appMixin from '../../mixin';
 
 export default {

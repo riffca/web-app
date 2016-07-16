@@ -11,7 +11,7 @@
 
 <script>
 import appMixin from '../../mixin';
-import navLinks from '../../usable/nav-links';
+import navLinks from '../../parts/nav-links';
 
 export default {
   components: {navLinks},

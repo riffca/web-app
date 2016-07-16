@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import navLinks from '../usable/nav-links';
+import navLinks from '../parts/nav-links';
 export default {
   components:{navLinks},
   data () {
@@ -27,7 +27,7 @@ export default {
     };
   },
   created(){
-  	console.log(this.$router)
+  	//console.log(this.$router)
   }
 };
 </script>

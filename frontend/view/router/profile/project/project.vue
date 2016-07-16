@@ -1,17 +1,24 @@
 <template>
 	<div id="project">
+  
     <div class="project-content">
 		  <h3>{{project.title}}</h3>
 		  <p>{{project.text}}</p> 
     </div>
-    <timestaps :timestamps="{createdAt: project.createdAt, updatedAt: project.updatedAt}"></timestaps>	
+
+    <timestamps 
+      :timestamps="{createdAt: project.createdAt, 
+                    updatedAt: project.updatedAt}">   
+    </timestamps>	
 	</div>
 </template>
 <script>
-import Project from '../../class/project';
 
+import timestamps from '../../../parts/timestamps';
+import Project from '../../../../class/project';
 
 export default {
+  components: {timestamps},
   props: ['projectinfo'],
   data(){
   	return {
@@ -20,7 +27,7 @@ export default {
   },
   asyncData(resolve, reject){
   	resolve({
-  		project: new Project(this.projectinfo);
+  		project: new Project(this.projectinfo)
   	})
   }
 };

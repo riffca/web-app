@@ -12,7 +12,7 @@ var
 //P A T H S 
     nodeJsPath = path.join(__dirname, 'backend', 'public'),
     phpPath = path.join(__dirname, 'php', 'public'),
-//D I R S
+    //D I R S
     frontend = path.join(__dirname, 'frontend'),
     public = PHP ? phpPath : nodeJsPath;
 
@@ -28,35 +28,38 @@ module.exports = {
         filename: '[name].js'
     },
     resolve: {
+
         modulesDirectories: ['node_modules'],
-        extensions: ['', '.js', '.scss', '.css', '.html', '.vue']
+        root: frontend,
+        alias: {
+            class: './class',
+            help: './help',
+            service: './service'
+        },
+        extensions: ['', '.js', '.scss', '.css', '.html', '.vue'],
+
     },
 
-    devtool: NODE_ENV === 'development' ? 
-    				'inline-cheap-module-source-map' : null,
+    devtool: NODE_ENV === 'development' ?
+        'inline-cheap-module-source-map' : null,
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel?presets[]=es2015',
-                exclude: /node_modules/
-            }, 
-            {
-                test: /\.scss$/,
-                loader: NODE_ENV === 'development' ?
-                    'style!css!sass?sourceMap' : ExtractTextPlugin.extract(
-                    	'css!autoprefixer?browsers=last 2 versions!sass'
-                    )
-            }, 
-            {
-                test: /\.html$/,
-                loader: 'raw'
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue'
-            }
-        ]
+        loaders: [{
+            test: /\.js$/,
+            loader: 'babel?presets[]=es2015',
+            exclude: /node_modules/
+        }, {
+            test: /\.scss$/,
+            loader: NODE_ENV === 'development' ?
+                'style!css!sass?sourceMap' : ExtractTextPlugin.extract(
+                    'css!autoprefixer?browsers=last 2 versions!sass'
+                )
+        }, {
+            test: /\.html$/,
+            loader: 'raw'
+        }, {
+            test: /\.vue$/,
+            loader: 'vue'
+        }]
     },
 
     vue: {
@@ -74,14 +77,14 @@ module.exports = {
                 music: ['guitar', 'viola']
             }),
             Application: JSON.stringify({
-                key: 'secret'                
-            }) 
+                key: 'secret'
+            })
         }),
         new webpack.ProvidePlugin({
-            logger: path.join(frontend,'help', 'logger.js'),
+            logger: path.join(frontend, 'help', 'logger.js'),
             Vue: 'vue'
-            //fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-            //Dinamics: 'dynamics'
+                //fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+                //Dinamics: 'dynamics'
         })
     ]
 };
@@ -94,21 +97,21 @@ if (PHP) {
             port: 3000,
             proxy: 'http://portrait.local/',
             files: [
-            	'./php/public/index.php',
-            	'./php/public/app'
+                './php/public/index.php',
+                './php/public/app'
             ]
         })
     );
     module.exports.node = {
-    	net: 'empty',
-    	tls: 'empty'
+        net: 'empty',
+        tls: 'empty'
     };
 
 } else if (!PHP) {
     module.exports.devServer = {
         contentBase: public,
         proxy: {
-        	'*': 'http://localhost:3000/'
+            '*': 'http://localhost:3000/'
         }
     };
 }
