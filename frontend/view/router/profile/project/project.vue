@@ -1,43 +1,30 @@
 <template>
-	<div id="project">
-  
-    <div class="project-content">
-		  <h3>{{project.title}}</h3>
-		  <p>{{project.text}}</p> 
-    </div>
-
-    <timestamps 
-      :timestamps="{createdAt: project.createdAt, 
-                    updatedAt: project.updatedAt}">   
-    </timestamps>	
-	</div>
+  <div id="profile-projects">
+        <project v-for="project in projects"
+            :content="project">
+        </project>
+  </div>
 </template>
-<script>
 
-import timestamps from '../../../parts/timestamps';
-import Project from '../../../../class/project';
+<script>
+import project from './project'; 
 
 export default {
-  components: {timestamps},
-  props: ['projectinfo'],
-  data(){
-  	return {
-  		project: ''
-  	}
+  components: {project},
+  data () {
+    return {
+      projects: 10
+    };
   },
   asyncData(resolve, reject){
-  	resolve({
-  		project: new Project(this.projectinfo)
-  	})
+    User.getprojects().then(data=>{
+      resolve({
+        projects: data.projects
+      })
+    });
   }
 };
 </script>
 
 <style lang="sass">
-#project {
-	margin: 0 auto;
-	max-width: 400px;
-	background: lighten(black,30%); 
-}
-
 </style>

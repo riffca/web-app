@@ -1,29 +1,23 @@
 <template>
 	<div id="post">
-		<div class="post-content">
-			<h3>{{post.title}}</h3>
-			<p>{{post.text}}</p>
-		</div>
-
-		<div class="post-author">	
-			<h4>{{post.author}}</h3>	
-		</div>
+		<h3>{{post.title}}</h3>
+		<p>{{post.text}}</p>
 
 		<timestamps 
       		:timestamps="{createdAt: post.createdAt, 
-                    	  updatedAt: post.updatedAt}">   
+                          updatedAt: post.updatedAt}">   
     	</timestamps>	
 	</div>
 </template>
 <script>
 
-import timestamps from '../../../parts/timestamps';
-import post from '/../../class/post';
+import timestamps from 'parts/timestamps';
+import post from 'class/post';
 
 
 export default {
   components: {timestamps},
-  props: ['postcontent'],
+  props: ['content'],
   data(){
   	return {
   		post: ''
@@ -31,7 +25,7 @@ export default {
   },
   asyncData(resolve, reject){
   	resolve({
-  		post: new post(this.postcontent);
+  		post: new post(this.content)
   	})
   }
 };

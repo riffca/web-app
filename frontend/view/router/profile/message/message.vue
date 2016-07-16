@@ -17,13 +17,13 @@
 </template>
 <script>
 
-import timestamps from '../../../parts/timestamps';
-import Message from '../../../class/message';
+import timestamps from 'parts/timestamps';
+import message from 'class/message';
 
 
 export default {
   components: {timestamps},
-  props: ['messagecontent'],
+  props: ['content'],
   data(){
   	return {
   		message: ''
@@ -31,7 +31,7 @@ export default {
   },
   asyncData(resolve, reject){
   	resolve({
-  		message: new Message(this.messagecontent);
+  		message: new message(this.content)
   	})
   }
 };

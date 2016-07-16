@@ -1,12 +1,13 @@
 <template>
   <div id="profile-posts">
         <post v-for="post in posts"
-            :postcontent="post">
+            :content="post">
         </post>
   </div>
 </template>
 
 <script>
+import User from 'class/user';
 import post from './post'; 
 
 export default {

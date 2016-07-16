@@ -30,11 +30,12 @@ module.exports = {
     resolve: {
 
         modulesDirectories: ['node_modules'],
-        root: frontend,
+        //root: path.resolve(__dirname),
         alias: {
-            class: './class',
-            help: './help',
-            service: './service'
+            class: path.join(frontend, 'class'),
+            help: path.join(frontend,'help'),
+            service: path.join(frontend,'service'),
+            parts:path.join(frontend,'view','parts')
         },
         extensions: ['', '.js', '.scss', '.css', '.html', '.vue'],
 
