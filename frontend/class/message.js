@@ -17,13 +17,13 @@ export default class {
         this.created = created;
         this.update = updated;
     }
-    getAll(){
+    static getAll(){
         return Vue.http.get(path + '/get-message/all');
     }
-    getOne(id){
+    static getOne(id){
         return Vue.http.get(path + '/get-message/:id');
     }
-    create() {
+    static create() {
         return Vue.http.post(path + '/create-message', {
             toUser: toUserId,
             fromUser: fromUserId,

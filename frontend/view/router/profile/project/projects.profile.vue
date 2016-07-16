@@ -1,20 +1,12 @@
 <template>
-	<div id="project">
-  
-    <div class="project-content">
-		  <h3>{{project.title}}</h3>
-		  <p>{{project.text}}</p> 
-    </div>
-
-    <timestamps 
-      :timestamps="{createdAt: project.createdAt, 
-                    updatedAt: project.updatedAt}">   
-    </timestamps>	
+	<div id="profile-projects">
+        <project v-for="project in projects"
+            :content="project">
+        </project>
 	</div>
 </template>
 
 <script>
-import User from 'class/user';
 import project from './project'; 
 
 export default {
@@ -25,7 +17,9 @@ export default {
     };
   },
   asyncData(resolve, reject){
-  	User.getProjects().then(data=>{
+  	let User = this.$parent.user;
+  	console.log(User);
+  	User.getProjectAll().then(data=>{
       resolve({
         projects: data.projects
       })

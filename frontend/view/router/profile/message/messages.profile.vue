@@ -8,7 +8,7 @@
 
 <script>
 import message from './message'; 
-import User from 'class/user';
+
 
 export default {
   components: {message},
@@ -18,7 +18,8 @@ export default {
     };
   },
   asyncData(resolve, reject){
-  	User.getMessages().then(data=>{
+  	let User = this.$parent.user;
+  	User.getMessageAll().then(data=>{
       resolve({
         messages: data.messages
       })

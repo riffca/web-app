@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import User from 'class/user';
 import post from './post'; 
 
 export default {
@@ -18,7 +17,8 @@ export default {
     };
   },
   asyncData(resolve, reject){
-    User.getPosts().then(data=>{
+    let User = this.$parent.user;
+    User.getPostAll().then(data=>{
       resolve({
         posts: data.posts
       })

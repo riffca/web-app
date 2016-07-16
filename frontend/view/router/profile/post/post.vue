@@ -1,8 +1,29 @@
 <template>
 	<div id="post">
-		<h3>{{post.title}}</h3>
-		<p>{{post.text}}</p>
-
+		<div class="post-content" v-if="!editing">
+			<h3>{{post.title}}</h3>
+			<p>{{post.text}}</p>
+			<span class="post-author">
+				{{post.author}}
+			</span>
+			<span v-if="user.hasPost()" @click="editing=!editing">Редактировать</span>
+		</div>
+		<form-wrapper v-if="editing">		
+			<form @submit.prevent="post.updatePost({
+						title: title,
+						text: text })">
+				<div class="input-control">
+					<label for="title">Заголовок</label>
+					<input type="text" id="title" v-model="title">
+				</div>
+				<div class="input-control">
+					<label for="text">Текст</label>
+					<input type="text" id="text" v-model="text">
+				</div>
+				<button type="submit">Готово</button>
+				<button @click="post.delete()"></button>
+			</form>
+		</form-wrapper>
 		<timestamps 
       		:timestamps="{createdAt: post.createdAt, 
                           updatedAt: post.updatedAt}">   

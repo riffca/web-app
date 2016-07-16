@@ -14,8 +14,10 @@
 
 <script>
 
-import navLinks from '../../parts/nav-links';
+import navLinks from 'parts/nav-links';
 import appMixin from '../../mixin';
+
+import User from 'class/user';
 
 export default {
   mixins:{appMixin},
@@ -30,12 +32,17 @@ export default {
     };
   },
   asyncData(resolve, reject){
+
   	let app = this.$root.app;
-  	app.getUser().then(user=>{
+
+  	app.getUser().then(data=>{
+      let user = new User(data);
+      
   		resolve({
   			username: user.username,
         user: user
   		})
+
   	});
   }
 };

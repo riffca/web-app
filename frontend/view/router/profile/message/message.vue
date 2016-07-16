@@ -1,14 +1,27 @@
 <template>
 	<div id="message">
-		<div class="message-content">
+		<div class="message-content" v-if="!editing">
 			<h4>{{ message.title }}</h4>	
 			<p>{{ message.text }}</p>
+			<button>Обновить</button>
 		</div>
+		<form-wrapper v-if="editing">		
+			<form @submit.prevent="createUser()">
+				<div class="input-control">
+					<label for="title">Имя пользователя</label>
+					<input type="text" id="title" v-model="title">
+				</div>
+				<div class="input-control">
+					<label for="text">Почта</label>
+					<input type="text" id="text" v-model="text">
+				</div>
+				<button type="submit">Готово</button>
+			</form>
+		</form-wrapper>
 		<div class="message-adress">
 			<span>{{ message.fromUser }}</span>	
 			<span>{{ message.toUser }}</span>
 		</div>
-
 		<timestamps 
       		:timestamps="{createdAt: message.createdAt, 
                     	  updatedAt: message.updatedAt}">   

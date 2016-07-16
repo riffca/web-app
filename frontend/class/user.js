@@ -41,8 +41,8 @@ export default class User {
     // M E S S A G E api
 
     getMessageAll(){
-        return Vue.http
-            .get('/api/message/get-message/all')
+        return Message
+            .getAll()
             .then(res => {
                 return res.data;
             });
