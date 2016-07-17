@@ -10,7 +10,7 @@
 
 <script>
 function getRandomNumber(){
-	return Math.floor(Math.random * (20 - 0) + 0);
+	return Math.floor(Math.random()*20 + 1);
 }
 function getAllNumbers(){
 
@@ -32,6 +32,15 @@ export default {
     		getRandomNumber()
     	]
     };
+  }
+  methods:{
+  	 checkNumber(number){
+  	 	idx = this.rightNumbers.indexOf(number);
+  	 	if(idx !== -1){
+  	 		return true;
+  	 	}
+  	 	return false;
+  	 }
   }
   ready(){
   	this.numbers = getAllNumbers(); 

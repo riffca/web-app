@@ -4,9 +4,9 @@ let ObjectId = mongoose.Schema.ObjectId;
 
 let MessageSchema = mongoose.Schema({
     toUser: {type: ObjectId, ref: 'User'},
-    fromFrom: {type: ObjectId, ref: 'User'},
-    title: String,
-    text: String
+    fromUser: {type: ObjectId, ref: 'User'},
+    text: String,
+    checked: {type: Boolean, default: false}
 });
 
 let Message = mongoose.model('message', MessageSchema);
@@ -19,19 +19,9 @@ module.exports = function(express) {
         Message.create({
             toUser: req.body.toUserId,
             fromUser: req.body.fromUserId,
-            title: req.body.title,
-            text: req.body.text
+            text: req.body.text,
         }).then(doc=>{
             res.send(doc);
-        });
-    });
-
-    api.get('/get-message/:id', (req, res) => {
-        Message
-        .findById(req.params.id)
-        .select('title text createdAt updatedAt')
-        .then(doc=>{
-            res.json(doc);
         });
     });
 
@@ -40,19 +30,27 @@ module.exports = function(express) {
         .find()
         .skip(10)
         .limit(10)
-        .select('title text createdAt updatedAt')
+        .select('fromUser toUser text createdAt updatedAt checked')
         .then(doc=>{
             res.json(doc);
         });
     });
 
-    api.put('/update-message/:id', (req, res) => {
-        Message.findOneAndUpdate(req.params.id, {
-            title: req.body.title,
-            text: req.body.text
-        }).then(doc => {
+    api.get('/get-message/:id', (req, res) => {
+        Message
+        .findById(req.params.id)
+        .populate('toUser','email')
+        .populate('fromUser', 'email')
+        .select('fromUser toUser  text createdAt updatedAt checked')
+        .then(doc=>{
             res.json(doc);
         });
+    });
+
+
+    api.use(function(req,res,next){
+        console.log('Warning! Admin actions..');
+        next();
     });
 
     api.delete('/delete-message/:id', (req, res) => {

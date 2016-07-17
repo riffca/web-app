@@ -1,6 +1,8 @@
 'use strict';
+
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
+
 
 let PostSchema = mongoose.Schema({
     author: {type: ObjectId, ref: 'User'},
@@ -13,7 +15,6 @@ let Post = mongoose.model('Post', PostSchema);
 module.exports = function(express) {
 
     let api = express.Router();
-
     api.post('/create-post', (req, res) => {
         Post.create({
             author: req.body.authorId,
@@ -24,27 +25,27 @@ module.exports = function(express) {
         });
     });
     
+    api.get('/get-post/all', (req, res) => {
+        Post
+        .find()
+        .limit(10)
+        .skip(10)
+        .select('title text createdAt updatedAt')
+        .then(docs=>{
+            res.json(docs);
+        });
+    });
 
     api.get('/get-post/:id', (req, res) => {
         Post
         .findById(req.params.id)
-        .populate('author')
-        .select('title text createdAt updatedAt')
+        .populate('author', 'email')
+        .select('author title text createdAt updatedAt')
         .then(doc=>{
             res.json(doc);
         });
     });
 
-    api.get('/get-post/all', (req, res) => {
-        Post
-        .find()
-        .skip(10)
-        .limit(10)
-        .select('title text createdAt updatedAt')
-        .then(doc=>{
-            res.json(doc);
-        });
-    });
 
     api.put('/update-post/:id', (req, res) => {
         Post.findOneAndUpdate(req.params.id, {
@@ -57,7 +58,10 @@ module.exports = function(express) {
 
     api.delete('/delete-post/:id', (req, res) => {
         Post.remove(req.params.id).then(doc=>{
-            res.json(doc);
+            res.json({
+                message: "Post deleted",
+                doc: doc
+            });
         });
     });
 

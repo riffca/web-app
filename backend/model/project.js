@@ -14,15 +14,6 @@ module.exports = function(express) {
 
     let api = express.Router();
     
-    api.get('/get-project/:id', (req, res) => {
-        Project
-        .findById(req.params.id)
-        .select('title description createdAt updatedAt')
-        .then(doc=>{
-        	res.json(doc);
-        });
-    });
-
     api.get('/get-project/all', (req, res) => {
         Project
         .find()
@@ -33,6 +24,17 @@ module.exports = function(express) {
         	res.json(doc);
         });
     });
+
+    api.get('/get-project/:id', (req, res) => {
+        Project
+        .findById(req.params.id)
+        .populate('creator', 'email')
+        .select('title description createdAt updatedAt')
+        .then(doc=>{
+            res.json(doc);
+        });
+    });
+
 
     api.post('/create-project', (req, res) => {
         Project.create({

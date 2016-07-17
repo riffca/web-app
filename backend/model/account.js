@@ -1,14 +1,12 @@
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
 let AccountSchema = mongoose.Schema({
+
 	active: {
 		type: Boolean,
 		default: false
 	},
 	owner: {type: ObjectId, ref: 'User'},
-    basket: {
-        type: String
-    },
     messages: [{
         type: ObjectId,
         ref: 'Message'
@@ -16,6 +14,11 @@ let AccountSchema = mongoose.Schema({
     posts: [{
         type: ObjectId,
         ref: 'Post'
-    }] 
+    }], 
+    projects: [{
+        type: ObjectId,
+        ref: 'Project'
+    }]
 });
+
 let Account = mongoose.model('Account',AccountSchema);

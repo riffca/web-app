@@ -4,7 +4,7 @@ let auth = require('../middleware/auth');
 //A P I
 module.exports = function(express) {
     let api = express.Router();
-    //create user
+    //create user and account
     api.post('/create-account', (req, res) => {
         let user = new User({
             email: req.body.email,
@@ -22,13 +22,25 @@ module.exports = function(express) {
             }
             auth.createToken(user)
                 .then(token => {
-                    res.json({
-                        success: true,
-                        message: "Новый аккаут успешно создан",
-                        token: token
+
+                    Account.create({
+                        owner: user._id
+                    }).then(account=>{
+                        res.json({
+                            success: true,
+                            message: "Новый аккаут успешно создан",
+                            token: token,
+                            user: user
+                        });
                     });
                 });
         });
+    });
+    //activate account
+    api.get('/activate-account',(req,res)=>{
+
+
+
     });
     //login user
     api.post('/login-account', (req, res) => {
