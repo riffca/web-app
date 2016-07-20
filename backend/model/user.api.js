@@ -1,6 +1,8 @@
 "use strict";
 let User = require('./user');
+let Account = require('./account');
 let auth = require('../middleware/auth');
+
 //A P I
 module.exports = function(express) {
     let api = express.Router();
@@ -22,26 +24,21 @@ module.exports = function(express) {
             }
             auth.createToken(user)
                 .then(token => {
-
-                    Account.create({
-                        owner: user._id
-                    }).then(account=>{
-                        res.json({
-                            success: true,
-                            message: "Новый аккаут успешно создан",
-                            token: token,
-                            user: user
-                        });
+                    res.json({
+                        success: true,
+                        message: "Новый аккаут успешно создан",
+                        token: token,
+                        user: user
                     });
                 });
         });
     });
     //activate account
-    api.get('/activate-account',(req,res)=>{
-
-
-
-    });
+/*    api.get('/activate-account', (req, res) => {
+        Account.create({
+            owner: user._id
+        }).then(account => {});
+    });*/
     //login user
     api.post('/login-account', (req, res) => {
         User
@@ -100,8 +97,8 @@ module.exports = function(express) {
         });
     });
     api.use(auth.verifyToken);
-    api.get('/check-auth',(req,res)=>{
-        
+    api.get('/check-auth', (req, res) => {
+
     });
     api.get('/get-auth-user', (req, res) => {
         res.json(res.decodedToken);

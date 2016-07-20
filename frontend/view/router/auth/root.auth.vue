@@ -25,5 +25,6 @@ export default {
 
 <style lang="sass">
 #auth {
+	position: relative;
 }
 </style>

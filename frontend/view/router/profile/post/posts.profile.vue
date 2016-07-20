@@ -20,7 +20,7 @@ export default {
     let User = this.$parent.user;
     User.getPostAll().then(data=>{
       resolve({
-        posts: data.posts
+        posts: data
       })
     });
   }

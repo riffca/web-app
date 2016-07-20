@@ -4,11 +4,11 @@
 			<h3>{{post.title}}</h3>
 			<p>{{post.text}}</p>
 			<span class="post-author">
-				{{post.author}}
+				{{post.author.email}}
 			</span>
-			<span v-if="user.hasPost()" @click="editing=!editing">Редактировать</span>
+			<button @click="editing = !editing">Править</button>
 		</div>
-		<form-wrapper v-if="editing">		
+		<form-wrapper v-if="editing" class="post-edit">		
 			<form @submit.prevent="post.updatePost({
 						title: title,
 						text: text })">
@@ -20,8 +20,8 @@
 					<label for="text">Текст</label>
 					<input type="text" id="text" v-model="text">
 				</div>
-				<button type="submit">Готово</button>
-				<button @click="post.delete()"></button>
+				<button type="submit" @click="editing = !editing">Готово</button>
+				<button @click="post.delete()">Удалить</button>
 			</form>
 		</form-wrapper>
 		<timestamps 
@@ -41,7 +41,8 @@ export default {
   props: ['content'],
   data(){
   	return {
-  		post: ''
+  		post: '',
+  		editing: false
   	}
   },
   asyncData(resolve, reject){
@@ -54,11 +55,33 @@ export default {
 
 <style lang="sass">
 #post {
-	margin: 0 auto;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto; 
 	max-width: 400px;
-	background: lighten(black,10%);
+	padding: 20px;
 	border-radius: 2px;
-	border: 1px solid black;
+	background: lighten(black,90%);
+	border: 1px solid lighten(black,70%);
+	button {
+		box-sizing: border-box;
+		height: 30px;
+		width: 70px;
+		padding: 5px;
+		border:none;
+		&:hover {
+			background: lighten(darkblue,70%);
+		}
+		&:focus,
+		&:hover,
+		&:active {
+			outline:none;
+		}
+	}
+
+	.post-edit {
+
+	}
 	.post-content {
 
 	} 

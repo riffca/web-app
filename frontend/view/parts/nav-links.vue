@@ -14,15 +14,17 @@ export default {
 
 <style lang="sass">
 #nav-links {
-	max-width:70%;
+	position: absolute;
+	top:0;
+	right:0;
+	padding: 10px;
 	background: rgba(black,.2);
 	span {
 		font-weight: bold;
 		font-size: 1.2rem;
 	}
 	.title {
-		border-right: 1px solid black;
-		border-bottom: 1px solid black;
+		
 	}
 	a{
 		margin: 10px;

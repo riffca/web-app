@@ -1,8 +1,6 @@
 <template>
 	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
-    <router-view :user="user" :app="app" title="currentTitle"></router-view>
-    <!-- <basket-root :basket="basket"></basket-root>
-    <user-root :user="user"></user-root> -->
+    <router-view :app="app" title="currentTitle"></router-view>
 </template>
 
 <script>
@@ -28,9 +26,6 @@ export default {
   data () {
     return {
       currentTitle: 'Главная', 
-      //brand: "Web App",
-      //basket: '',
-      //user: '',
       app: ''
     };
   },

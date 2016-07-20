@@ -33,11 +33,12 @@ export default {
 
 <style lang="sass">
 #project {
-  margin: 0 auto;
+  margin: 10px auto;
   max-width: 400px;
-  background: lighten(black,10%);
+  background: lighten(black,90%);
+  padding: 20px;
   border-radius: 2px;
-  border: 1px solid black;
+  border: 1px solid lighten(black,70%);
   .project-content {
 
   } 

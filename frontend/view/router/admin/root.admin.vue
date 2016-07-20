@@ -25,4 +25,7 @@ export default {
 </script>
 
 <style lang="sass">
+#root-admin {
+	position: relative;
+}
 </style>

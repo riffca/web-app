@@ -28,9 +28,10 @@ module.exports = function(express) {
     api.get('/get-post/all', (req, res) => {
         Post
         .find()
+        .populate('author','usename email')
+        //.skip(10)
         .limit(10)
-        .skip(10)
-        .select('title text createdAt updatedAt')
+        .select('author title text createdAt updatedAt')
         .then(docs=>{
             res.json(docs);
         });

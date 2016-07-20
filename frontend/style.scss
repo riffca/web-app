@@ -6,8 +6,13 @@
 html, body {
 	height:100%;
 }
+ul{
+	text-decoration: none;
+	list-style: none;
+}
 
 #application {
+  	position: relative;
 	h1,h2 {
 		padding: 15px;
 		text-align: center;

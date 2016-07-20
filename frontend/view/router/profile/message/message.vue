@@ -5,6 +5,7 @@
 			<p>{{ message.text }}</p>
 			<button>Обновить</button>
 		</div>
+
 		<form-wrapper v-if="editing">		
 			<form @submit.prevent="createUser()">
 				<div class="input-control">
@@ -52,11 +53,12 @@ export default {
 
 <style lang="sass">
 #message {
-	margin: 0 auto;
+	margin: 10px auto;
 	max-width: 400px;
-	background: lighten(black,10%);
+	background: lighten(black,90%);
+	padding: 20px;
 	border-radius: 2px;
-	border: 1px solid black;
+	border: 1px solid lighten(black,70%);
 	.message-content {
 
 	} 

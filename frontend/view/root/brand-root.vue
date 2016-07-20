@@ -1,13 +1,8 @@
 <template>
     <div id="brand">
-	    <h1>
-			<div class="brand-logo">
-				Маркетинговая веб студия
-				<span>Go</span>
-				<span>Web</span>
-			</div>
-			<h2>Создание коммерских веб приложений</h2>
-		</h1>
+		<div class="brand-logo">
+			<h2>Проекты</h2>
+		</div>
 		<nav-links title="home page">
 			<a v-link="{name: 'Регистрация'}">Регистрация</a>
 			<a v-link="{name: 'Профиль'}">Профиль</a>
@@ -37,6 +32,9 @@ export default {
 			span{
 			font-weight: normal;
 			}
+		}
+		#nav-links{
+
 		}
 	}
 </style>

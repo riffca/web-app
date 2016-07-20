@@ -1,3 +1,4 @@
+"use strict";
 let mongoose = require('mongoose');
 let ObjectId = mongoose.Schema.ObjectId;
 let AccountSchema = mongoose.Schema({
@@ -22,3 +23,5 @@ let AccountSchema = mongoose.Schema({
 });
 
 let Account = mongoose.model('Account',AccountSchema);
+
+module.exports = Account;
