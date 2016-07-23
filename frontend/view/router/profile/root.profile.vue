@@ -69,20 +69,12 @@ export default {
     };
   },
   asyncData(resolve, reject){
-
-  	let app = this.$root.app;
-
-  	app.getAuthUser().then(data=>{
-      if(!this.$root.user.auth){
-          let user = new User(data);
-          resolve({
+  	let user = this.$root.user;
+      resolve({
           username: user.username,
-          user: user
-        })
-      }
-      
-  	});
-  }
+          user: user       
+      })
+  	}
 };
 </script>
 

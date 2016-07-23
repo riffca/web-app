@@ -22,6 +22,24 @@ let router = new vueRouter({
 
 
 import routeMap from './view/router'; 
+import authService from 'service/auth';
+
+router.beforeEach(({to, next, redirect})=>{
+
+	if(to.auth){
+		let isAuth = authService.checkAuth();
+		if(!isAuth){
+			redirect('/login');
+		} else {
+			next();
+		}
+	}
+	else {
+		next();
+	}
+
+});
+
 router
     .map(routeMap)
     .start(rootComponent, '#application', () => {

@@ -10,16 +10,13 @@ export default class User {
         id = 1,
         username = "guest",
         password = '',
-        email = '',
-        basket = '',
-        auth = false
+        email = ''
     }) {
         this.id = id;
         this.username = username;
-        this.auth = auth;
+        this.auth = false;
         this.password = password;
         this.email = email;
-        //this.basket = new Basket(basket);
     }
 
     checkAuth() {

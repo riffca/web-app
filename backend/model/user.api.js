@@ -63,7 +63,10 @@ module.exports = function(express) {
                             res.send({
                                 message: "Ошибка! Неверный пароль.",
                                 success: false,
-                                user: user
+                                user: {
+                                    username: 'unknown',
+                                    email: 'unknown'
+                                }
                             });
                             return;
                         } else {
@@ -79,33 +82,19 @@ module.exports = function(express) {
                 }
             });
     });
-    api.get('/getDefaultUser', auth.authCheck, (req, res) => {
-        res.json({
-            id: 777,
-            name: 'stas',
-            email: 'riffca@ya.ru',
-            phoneNumber: '',
-            login: true,
-            basket: {
-                users: [{
-                    name: 'step'
-                }, {
-                    name: 'ann'
-                }]
-            },
-            status: res.authStatus
-        });
-    });
+    
+    // M I D D L E W A R E
     api.use(auth.verifyToken);
-    api.get('/check-auth', (req, res) => {
 
-    });
     api.get('/get-auth-user', (req, res) => {
         res.json({
             success: true,
             user: res.decodedToken
         });
     });
+
+
+
     //I D E A S 
     api.post('/updateCurrentUser', (req, res) => {
         User.findOne(req.body.userId)

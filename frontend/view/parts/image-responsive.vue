@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 export default {
   props:['src','alt']
   data () {
@@ -13,15 +14,18 @@ export default {
     };
   }
 };
+
 </script>
 
 <style lang="sass">
-@import '../variables';
-#image-responsive {
 
+@import '../variables';
+
+#image-responsive {
 	img{
 		@include responsiveWidth(600px);
 	}
 }
+
 
 </style>

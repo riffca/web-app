@@ -23,6 +23,7 @@ export default {
         }
     },
     '/profile': {
+        auth: true,
         name: 'Профиль',
         component: require(profilePath + '/root.profile'),
         subRoutes: {

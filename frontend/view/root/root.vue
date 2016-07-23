@@ -1,19 +1,20 @@
 <template>
+{{user | json}}
 	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
     <router-view title="currentTitle"></router-view>
 </template>
 
 <script>
 //helper
-import jsonHelper from '../../help/json';
+import jsonHelper from 'help/json';
 
 //html части
 import UserRoot from './user.root';
 import BrandRoot from './brand-root';
 
 //классы
-import App from '../../class/app';
-import User from '../../class/user';
+import App from 'class/app';
+import User from 'class/user';
 
 export default {
   replace: false,
@@ -31,21 +32,30 @@ export default {
   asyncData(resolve, reject){
     //Создаем приложение
     let app = new App();
-
-    logger('(Create app object)App',()=>{
+    logger('Create App object',()=>{
       console.log(jsonHelper(app));
     })
 
-    app.getAuthUser().then(data=>{
+    //Получаем юзера
+    app.getAuthUser().then(resData=>{
 
-        logger('(Create app object)App',()=>{
-            console.log(jsonHelper(app));
-        })
+        let user = app.user = new User(resData.user);
+        
+        if(!resData.success){
+          resolve({
+            app: app,
+            user: user
+          })
+        }
+
         resolve({
             app: app,
-            user: data.success ? data.user : ''
+            user: user
         })
-    });
+        logger('Create User object',()=>{
+            console.log(jsonHelper(user));
+        })
+    })
   }
 };
 </script>

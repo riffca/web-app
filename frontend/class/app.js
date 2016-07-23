@@ -1,4 +1,5 @@
-import tokenService from '../service/token';
+import tokenService from 'service/token';
+import authService from 'service/auth';
 /**
 /*
 /*О П И С А Н И Е  П Р И Л О Ж Е Н И Я
@@ -8,10 +9,11 @@ export default class App {
 
     constructor(user = {}) {
         this.user = user;
-        //this.location = this.getLocation();
-        this.created = Date.now('M-h');
-        this.serverStatic = '';
-        this.serverDynamic = '';
+        this.created = Date.now();
+        this.hostPath = '';
+    }
+    checkAuth(){
+        return authService.checkAuth();
     }
     /**
     /*
@@ -23,7 +25,7 @@ export default class App {
         email,
         password
     }){
-        return Vue.http.post(this.serverDynamic + '/api/user/create-account',{
+        return Vue.http.post(this.hostPath + '/api/user/create-account',{
                 username: username,
                 email: email,
                 password: password
@@ -38,7 +40,7 @@ export default class App {
         email,
         password
     }){
-        return Vue.http.post(this.serverDynamic + '/api/user/login-account',{
+        return Vue.http.post(this.hostPath + '/api/user/login-account',{
                 email: email,
                 password: password
             }).then(res=>{
@@ -53,7 +55,7 @@ export default class App {
     */
     getAuthUser(){
         return Vue.http
-        .get(this.serverDynamic + '/api/user/get-auth-user')
+        .get(this.hostPath + '/api/user/get-auth-user')
         .then(res=>{
             return res.data;
         });

@@ -1,10 +1,11 @@
 import tokenService from './token';
+
 export default class {
-	checkAuth(){
-		tokenService
-			.getToken()
-			.then(token=>{
-				i
-			});
+	checkAuth(router){
+		let token = tokenService.getToken();
+		if(!token){
+			return false;
+		} 
+		return true;
 	}
 }

@@ -1,6 +1,6 @@
 import token from './token';
 
-export default function () {
+export default function() {
     let timeId = setInterval(() => {
         logger('(http)Loading..');
     }, 10);
@@ -9,10 +9,12 @@ export default function () {
             request.headers = {
                 'x-access-token': token.getToken() || ''
             };
-            logger('Http request!', ()=>{
-                console.log(request.data);
+            logger(`Http ${request.method} request to ${request.url}`, () => {
+                let data = request.data;
+                if (data) {
+                    console.log(data);
+                }
             });
-            logger(request.method + ' ' + request.url);
 
             return request;
         },
@@ -20,7 +22,7 @@ export default function () {
             clearTimeout(timeId);
 
 
-            logger('Http response!', ()=>{
+            logger('Http response!', () => {
                 console.log(response.data);
             });
             //траблы если передавать response.data
@@ -28,4 +30,3 @@ export default function () {
         }
     };
 }
-
