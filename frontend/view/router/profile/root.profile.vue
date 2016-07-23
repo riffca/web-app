@@ -1,45 +1,65 @@
 <template>
 	<div id="profile">
-		<h1>Профиль</h1>
-		<h2>Привет {{username}}</h2>
+		<h2>Профиль</h2>
+		<h3>Привет {{username}}</h3>
     <nav-links title="profile page">
       <a v-link="{name:'Сообщения'}">Сообщения</a>
       <a v-link="{name:'Посты'}">Посты</a>
       <a v-link="{name:'Проекты'}">Проекты</a>
     </nav-links>
     <div class="profile-ui">
-      <div class="left-column">
 
+      <!--LEFT COLUMN -->
+      <div class="left-column">
         <actions-panel title="Создать">
           <ul>
-            <li class="action create-project">Проект</li>
-            <li class="action write-post">Пост</li>
-            <li class="action send-message">Сообщение</li>
+            <li class="action create-project">
+              <modal-window action="Проект">
+                
+
+              </modal-window>
+            </li>
+            <li class="action write-post">
+              <modal-window action="Пост">
+                
+
+              </modal-window>
+            </li>
+            <li class="action send-message">
+              <modal-window action="Сообщение">
+                
+
+              </modal-window>
+            </li>
           </ul>
         </actions-panel>
-
       </div>
+
+      <!--RIGHT COLUMN -->
       <div class="right-column">
-
 		    <router-view></router-view>
-
       </div>
     </div>
+
 	</div>
 </template>
 
 <script>
+import appMixin from '../../mixin';
+
+//parts
 import actionsPanel from 'parts/actions-panel';
 import navLinks from 'parts/nav-links';
-import appMixin from '../../mixin';
+import modalWindow from 'parts/modal-window';
 
 import User from 'class/user';
 
 export default {
   mixins:{appMixin},
   components: {
+    modalWindow,
   	navLinks,
-    actionsPanel
+    actionsPanel,
   },
 
   data () {
@@ -53,13 +73,14 @@ export default {
   	let app = this.$root.app;
 
   	app.getAuthUser().then(data=>{
-      let user = new User(data);
+      if(!this.$root.user.auth){
+          let user = new User(data);
+          resolve({
+          username: user.username,
+          user: user
+        })
+      }
       
-  		resolve({
-  			username: user.username,
-        user: user
-  		})
-
   	});
   }
 };
@@ -68,6 +89,9 @@ export default {
 <style lang="sass">
 #profile{
   position: relative;
+  h2{
+    text-align: left;
+  }
   #actions-panel{
     flex-row: 40%;
   }

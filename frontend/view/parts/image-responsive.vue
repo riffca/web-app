@@ -1,13 +1,12 @@
 <template>
-	<div id="actions-panel">
-		<h4>{{title}}</h4>
-		<slot>	
-		</slot>
-	</div>
+<div id="image-responsive">
+	<img src="{{src}}" alt="{{alt}}">
+</div>
 </template>
+
 <script>
 export default {
-  props: ['title'],
+  props:['src','alt']
   data () {
     return {
 		
@@ -18,9 +17,11 @@ export default {
 
 <style lang="sass">
 @import '../variables';
-#actions-panel{
-	max-height: 600px;
-	@include defaultbg();
+#image-responsive {
 
+	img{
+		@include responsiveWidth(600px);
+	}
 }
+
 </style>

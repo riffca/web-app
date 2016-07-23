@@ -2,3 +2,20 @@
 	background: lighten(black,90%);
 	border: 1px solid lighten(black,70%);
 }
+
+@mixin responsiveWidth($maxWidth){
+	max-width: $maxWidth;
+	width:100%;
+	height: auto;
+}
+
+@mixin responsiveHeight($maxHeight){
+	max-height: $maxHeight;
+	width: auto !important;
+	height: 100%; 
+}
+
+@mixin defaultButton(){
+	box-sizing: border-box;
+	
+}

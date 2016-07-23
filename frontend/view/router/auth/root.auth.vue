@@ -1,6 +1,6 @@
 <template>
 <div id="auth">
-	<h1>Регистрация</h1>
+	<h2>Регистрация</h2>
 	<nav-links title="auth page">
 		<a v-link="{name: 'signup'}">Зарегистрироваться</a>
 		<a v-link="{name: 'login'}">Войти</a>
@@ -26,5 +26,8 @@ export default {
 <style lang="sass">
 #auth {
 	position: relative;
+		h2{
+		text-align: left;
+	}
 }
 </style>

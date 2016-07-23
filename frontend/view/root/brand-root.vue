@@ -5,8 +5,8 @@
 		</div>
 		<nav-links title="home page">
 			<a v-link="{name: 'Регистрация'}">Регистрация</a>
-			<a v-link="{name: 'Профиль'}">Профиль</a>
-			<a v-link="{name: 'Админка'}">Админка</a>  
+			<!-- <a v-link="{name: 'Профиль'}">Профиль</a> -->
+			<!-- <a v-link="{name: 'Админка'}">Админка</a>  --> 
 	    </nav-links>
     </div>
 </template>
@@ -29,12 +29,14 @@ export default {
 <style lang="sass">
 	#brand{
 		.brand-logo{
+			h2{
+				text-align: left;
+			}
 			span{
 			font-weight: normal;
 			}
 		}
 		#nav-links{
-
 		}
 	}
 </style>

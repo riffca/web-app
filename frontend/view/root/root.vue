@@ -1,6 +1,6 @@
 <template>
 	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
-    <router-view :app="app" title="currentTitle"></router-view>
+    <router-view title="currentTitle"></router-view>
 </template>
 
 <script>
@@ -9,7 +9,6 @@ import jsonHelper from '../../help/json';
 
 //html части
 import UserRoot from './user.root';
-import BasketRoot from './basket.root';
 import BrandRoot from './brand-root';
 
 //классы
@@ -19,46 +18,34 @@ import User from '../../class/user';
 export default {
   replace: false,
   components:{
-    BasketRoot,
     BrandRoot,
     UserRoot
   }, 
   data () {
     return {
       currentTitle: 'Главная', 
-      app: ''
+      app: '',
+      user: ''
     };
   },
   asyncData(resolve, reject){
     //Создаем приложение
     let app = new App();
-/*    app.authCheck().then(data=>{
 
-    });*/
     logger('(Create app object)App',()=>{
       console.log(jsonHelper(app));
     })
-    resolve({
-      app: app
-    })
-    /**************
-    /*C O M M E N T
-    /*Придумать когжда получатm юзера в рут
-    */
-    //Получаем пользователя
-    // app.getUser().then(response=>{
-    //     let user = new User(response.data)
-    //     app.user = user;
-    //     resolve({
-    //       user: user,
-    //       app: app
-    //     });
-    //     //Logger
-    //     logger('(Create app object)User',()=>{
-    //       console.log(jsonHelper(user)); 
-    //     });  
 
-    // }, err => {logger(err)});
+    app.getAuthUser().then(data=>{
+
+        logger('(Create app object)App',()=>{
+            console.log(jsonHelper(app));
+        })
+        resolve({
+            app: app,
+            user: data.success ? data.user : ''
+        })
+    });
   }
 };
 </script>

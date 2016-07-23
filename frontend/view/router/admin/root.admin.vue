@@ -1,6 +1,6 @@
 <template>
 	<div id="root-admin">
-		<h1>Админка</h1>
+		<h2>Админка</h2>
 		<nav-links title="admin page">
 			<a v-link="{name: 'content.admin'}">Контент</a>
 			<a v-link="{name: 'statistic.admin'}">Статистика</a>
@@ -26,6 +26,9 @@ export default {
 
 <style lang="sass">
 #root-admin {
+	h2{
+		text-align: left;
+	}
 	position: relative;
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-
 <div id="modal-window">
 	<div class="modal-target" v-if="!show">
 		<span @click="show=!show">{{ action }}</span>
@@ -25,7 +24,7 @@ export default {
   },
   data () {
     return {
-		
+		show: false
     };
   }
 };
@@ -35,13 +34,16 @@ export default {
 #modal-window{
 	.modal-target {
 		span{
-			padding: 3px;
+			margin:8px;
 			font-size: 1.3rem;
 			cursor: pointer;
+			&:hover {
+				background: white;
+			}
 		}
 	}
 	.modal-content{
-		display: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;

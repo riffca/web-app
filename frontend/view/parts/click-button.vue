@@ -16,7 +16,13 @@ export default {
 
 <style lang="sass">
 #click-button {
+	width: 100px;
+	height: 50px;
 	display: inline-block;
 	cursor: pointer;
+	&:hover {
+		background: lighten(black,70%);
+	}
 }
+
 </style>

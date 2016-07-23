@@ -101,7 +101,10 @@ module.exports = function(express) {
 
     });
     api.get('/get-auth-user', (req, res) => {
-        res.json(res.decodedToken);
+        res.json({
+            success: true,
+            user: res.decodedToken
+        });
     });
     //I D E A S 
     api.post('/updateCurrentUser', (req, res) => {
