@@ -5,26 +5,27 @@ export default class {
     
     constructor({
         title,
-        text,
+        description,
         created,
         updated
     }) {
         this.title = title;
-        this.text = text;
+        this.description = description;
         this.created = created;
         this.update = updated;
     }
-    getAll(){
-        return Vue.http.get(path + '/get-project/all');
-    }
-    getOne(id){
-        return Vue.http.get(path + '/get-project/:id');
-    }
-    create() {
+    static create({title, desription, creatorId}) {
         return Vue.http.post(path + '/create-project', {
             title: title,
-            text: text,
+            description: description,
+            creator: creatorId
         });
+    }
+    static getAll(){
+        return Vue.http.get(path + '/get-project/all');
+    }
+    static getOne(id){
+        return Vue.http.get(path + '/get-project/:id');
     }
     update() {
         return Vue.http.put(path + '/create-project');

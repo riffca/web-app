@@ -33,7 +33,7 @@ module.exports = {
                 username: user.username,
                 email: user.email
             }, secretKey, {
-                expiresIn: 24 * 31
+                expiresIn: 24 * 31 + 'h'
             }, (err, token) => {
                 if (err) reject(err);
                 resolve(token);

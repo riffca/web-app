@@ -1,5 +1,5 @@
 <template>
-<div id="modal-window">
+<div id="modal-window" v-bind:class="{'show-modal': show}">
 	<div class="modal-target" v-if="!show">
 		<span @click="show=!show">{{ action }}</span>
 	</div>
@@ -10,7 +10,7 @@
 		<div class="content-body">
 			<slot name="body"></slot>
 		</div>
-		<click-button @click="show=!show">Закрыть</click-button>	
+		<click-button @click="show=!show" class="close-window">Закрыть</click-button>	
 	</div>
 </div>
 
@@ -19,6 +19,7 @@
 <script>
 import clickButton from './click-button';
 export default {
+  components: {clickButton},
   props: {
   	action:String
   },
@@ -43,11 +44,23 @@ export default {
 		}
 	}
 	.modal-content{
-		position: fixed;
+		position: relative;
+		margin: 20% auto 0 auto;
+		width: 70%;
+		background: white;
+		.close-window {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+	&.show-modal{
+		width: 100%;
+		height: 100%;
 		top: 0;
 		left: 0;
-		width: 100%;
-		background: white;
+	    position: fixed;
+	    background: rgba(black,.4);	
 	}
 }
 </style>

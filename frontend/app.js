@@ -25,7 +25,6 @@ import routeMap from './view/router';
 import authService from 'service/auth';
 
 router.beforeEach(({to, next, redirect})=>{
-
 	if(to.auth){
 		let isAuth = authService.checkAuth();
 		if(!isAuth){
@@ -37,7 +36,6 @@ router.beforeEach(({to, next, redirect})=>{
 	else {
 		next();
 	}
-
 });
 
 router

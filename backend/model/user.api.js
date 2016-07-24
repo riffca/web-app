@@ -64,6 +64,7 @@ module.exports = function(express) {
                                 message: "Ошибка! Неверный пароль.",
                                 success: false,
                                 user: {
+                                    id: 1,
                                     username: 'unknown',
                                     email: 'unknown'
                                 }

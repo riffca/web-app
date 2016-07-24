@@ -40,9 +40,9 @@ export default class {
     static getOne(id){
         return Vue.http.get(path + '/get-post/:id');
     }
-    static create() {
+    static create({title, text, authorId}) {
         return Vue.http.post(path + '/create-post', {
-            author: author,
+            author: authorId,
             title: title,
             text: text
         });

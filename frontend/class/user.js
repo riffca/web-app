@@ -9,26 +9,23 @@ export default class User {
     constructor({
         id = 1,
         username = "guest",
-        password = '',
         email = ''
     }) {
         this.id = id;
         this.username = username;
-        this.auth = false;
-        this.password = password;
         this.email = email;
     }
 
     checkAuth() {
         let token = tokenService.getToken();
-        if(!token){
+        if (!token) {
             this.auth = false;
             return false;
         }
-        return Vue.http.post('/api/user/check-auth',{
+        return Vue.http.post('/api/user/check-auth', {
             token: token
-        }).then(res=>{
-            if(res.data.success === false){
+        }).then(res => {
+            if (res.data.success === false) {
                 return false;
             }
             return true;
@@ -43,14 +40,14 @@ export default class User {
 
     // M E S S A G E api
 
-    getMessageAll(){
+    getMessageAll() {
         return Message
             .getAll()
             .then(res => {
                 return res.data;
             });
     }
-    getMessage(messageId){
+    getMessage(messageId) {
         return Message
             .getOne(messageId)
             .then(res => {
@@ -72,22 +69,21 @@ export default class User {
     }
 
     // P O S T api
-
-    getPostAll(){
+    getPostAll() {
         return Post
             .getAll()
             .then(res => {
                 return res.data;
             });
     }
-    getPost(postId){
+    getPost(postId) {
         return Post
             .getOne(postId)
             .then(res => {
                 return res.data;
             });
     }
-    writePost({ title, text, authorId}) {
+    writePost({ title, text, authorId }) {
         let post = new Post({
             title: title,
             text: text,
@@ -101,8 +97,7 @@ export default class User {
     }
 
     // P R O J E C T api
-
-    getProjectAll(){
+    getProjectAll() {
         return Project
             .getAll()
             .then(res => {
@@ -110,22 +105,22 @@ export default class User {
             });
     }
 
-    getProject(projectId){
+    getProject(projectId) {
         return Project
             .getOne(projectId)
             .then(res => {
                 return res.data.message;
             });
     }
-    createProject({ title, description }) {
-        let project = new Project({
-            title: title,
-            description: description
-        });
+    createProject({ title, description, creatorId }) {
         return Project
-            .create(project)
+            .create({
+                title: title,
+                description: description,
+                creator: creatorId
+            })
             .then(res => {
                 return res.data.project;
             });
-    }  
+    }
 }

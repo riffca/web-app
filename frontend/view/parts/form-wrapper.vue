@@ -1,4 +1,4 @@
-<template>
+	<template>
 	<div id="form-wrapper">
 		<slot></slot>
 	</div>

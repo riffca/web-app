@@ -1,5 +1,5 @@
 <template>
-{{user | json}}
+    {{user | json}}
 	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
     <router-view title="currentTitle"></router-view>
 </template>
@@ -40,14 +40,14 @@ export default {
     app.getAuthUser().then(resData=>{
 
         let user = app.user = new User(resData.user);
-        
+        //default
         if(!resData.success){
           resolve({
             app: app,
             user: user
           })
         }
-
+        //auth
         resolve({
             app: app,
             user: user
