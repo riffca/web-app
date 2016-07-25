@@ -7,13 +7,15 @@ import Message from './message';
 
 export default class User {
     constructor({
-        id = 1,
-        username = "guest",
-        email = ''
+        id,
+        username,
+        email,
+        auth = true,
     }) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.auth = auth;
     }
 
     checkAuth() {

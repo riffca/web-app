@@ -29,25 +29,38 @@ export default {
       user: ''
     };
   },
+
   asyncData(resolve, reject){
     //Создаем приложение
     let app = new App();
     logger('Create App object',()=>{
       console.log(jsonHelper(app));
     })
-
     //Получаем юзера
     app.getAuthUser().then(resData=>{
 
-        let user = app.user = new User(resData.user);
-        //default
+        //not auth unknown user
         if(!resData.success){
+          let user = new User({
+              id: 'unknown',
+              username: 'unknown',
+              email: 'unknow',
+              auth: false
+          });
+          app.user = user.id;
           resolve({
             app: app,
             user: user
           })
+          logger('Create User object',()=>{
+            console.log(jsonHelper(user));
+          })
+          return;
         }
-        //auth
+
+        //auth user
+        let user = new User(resData.user);
+        app.user = user.id;
         resolve({
             app: app,
             user: user

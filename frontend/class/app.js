@@ -1,5 +1,7 @@
 import tokenService from 'service/token';
 import authService from 'service/auth';
+
+import User from './user';
 /**
 /*
 /*О П И С А Н И Е  П Р И Л О Ж Е Н И Я
@@ -7,8 +9,8 @@ import authService from 'service/auth';
 */
 export default class App {
 
-    constructor(user = {}) {
-        this.user = user;
+    constructor(callback) {
+        this.user = new User(callback);
         this.created = Date.now();
         this.hostPath = '';
     }
@@ -47,6 +49,9 @@ export default class App {
                 tokenService.setToken(res.data.token);
                 return res.data;
             });
+    }
+    logOut(){
+        tokenService.deleteToken();
     }
     /**
     /*

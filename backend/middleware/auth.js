@@ -20,7 +20,7 @@ module.exports = {
                     success: false,
                     error: err
                 });
-                console.log(err);
+                //console.log(err);
             }
             res.decodedToken = decoded;
             next();

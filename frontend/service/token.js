@@ -6,5 +6,8 @@ export default {
 	},
 	getToken(){
 		return storage.getItem('token');
+	},
+	deleteToken(){
+		storage.removeItem('token');
 	}
 };

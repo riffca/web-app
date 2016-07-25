@@ -32,10 +32,13 @@ module.exports = {
         modulesDirectories: ['node_modules'],
         //root: path.resolve(__dirname),
         alias: {
-            class: path.join(frontend, 'class'),
-            help: path.join(frontend,'help'),
-            service: path.join(frontend,'service'),
-            parts:path.join(frontend,'view','parts')
+            'class': path.join(frontend, 'class'),
+            'help': path.join(frontend,'help'),
+            'service': path.join(frontend,'service'),
+            'root': path.join(frontend,'view','root'),
+            'profile-route':path.join(frontend,'view','router','profile'),
+            'auth-route':path.join(frontend,'view','router', 'auth'),
+            'parts':path.join(frontend,'view','parts')
         },
         extensions: ['', '.js', '.scss', '.css', '.html', '.vue'],
 

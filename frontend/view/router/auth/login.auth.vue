@@ -17,6 +17,7 @@
 	</div>
 </template>
 <script>
+import User from 'class/user';
 import formWrapper from '../../parts/form-wrapper';
 export default {
   components:{formWrapper},
@@ -28,12 +29,16 @@ export default {
   },
   methods:{
   	login(){
-  		this.$root.app.loginAccount({
+      let app = this.$root.app;
+  		app.loginAccount({
   			email: this.email,
   			password: this.password
   		}).then(res=>{
+        return app.getAuthUser();
+  		}).then(res=>{
+        this.$root.user = new User(res.user);
         this.$router.go({name: 'Профиль'});
-  		})
+      });
   	}
   }
 };

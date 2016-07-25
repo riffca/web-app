@@ -1,7 +1,8 @@
 <template>
     <div id="brand">
 		<div class="brand-logo">
-			<h2>Проекты</h2>
+			<h2>Проекты<log-out></log-out></h2>
+
 		</div>
 		<nav-links title="home page">
 			<a v-link="{name: 'Регистрация'}">Регистрация</a>
@@ -12,15 +13,10 @@
 </template>
 
 <script>
-import navLinks from '../parts/nav-links';
+import logOut from 'parts/log-out';
+import navLinks from 'parts/nav-links';
 export default {
-  components:{navLinks},
-  data () {
-    return {
-    	titles: [
-    	]
-    };
-  },
+  components:{navLinks, logOut},
   created(){
   	//console.log(this.$router)
   }

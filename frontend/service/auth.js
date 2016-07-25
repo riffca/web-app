@@ -7,5 +7,8 @@ export default {
 			return false;
 		} 
 		return true;
+	},
+	logOut(){
+		tokenService.deleteToken();
 	}
 };
