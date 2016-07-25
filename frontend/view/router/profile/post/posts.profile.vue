@@ -17,8 +17,8 @@ export default {
     };
   },
   asyncData(resolve, reject){
-    let User = this.$parent.user;
-    User.getPostAll().then(data=>{
+    let User = this.$root.user;
+    User.getAllPosts().then(data=>{
       resolve({
         posts: data
       })

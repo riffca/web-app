@@ -17,19 +17,30 @@ module.exports = function(express) {
     let api = express.Router();
     api.post('/create-post', (req, res) => {
         Post.create({
-            author: req.body.authorId,
+            author: req.body.author,
             title: req.body.title,
             text: req.body.text
         }).then(doc=>{
             res.send(doc);
         });
     });
-    
-    api.get('/get-post/all', (req, res) => {
+
+
+    api.get('/get-all-user-posts/:authorId', (req, res) => {
+        Post
+        .find({author: req.params.authorId})
+        .populate('author')
+        .limit(10)
+        .select('author title text createdAt updatedAt')
+        .then(docs=>{
+            res.json(docs);
+        });
+    });
+
+    api.get('/get-all-posts', (req, res) => {
         Post
         .find()
         .populate('author','usename email')
-        //.skip(10)
         .limit(10)
         .select('author title text createdAt updatedAt')
         .then(docs=>{

@@ -1,7 +1,8 @@
 <template>
 	<div id="timestamps">
-		<span>{{timestamps.createdAt}}</span>
-		<span>{{timestamps.updatedAt}}</span>		
+		<span>{{timestamps.createdAt }}</span>
+		<br>
+		<span>{{timestamps.updatedAt }}</span>		
 	</div>
 </template>
 

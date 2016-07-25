@@ -16,60 +16,19 @@
             <!--Создать проект-->
             <li v-link="{query: {create: 'project'}}" class="action create-project">
               <modal-window action="Проект">
-                <div slot="head">Создать проект</div>
-                <div slot="body">
-                  <form-wrapper>    
-                    <form @submit.prevent="user.createProject()">
-                      <div class="input-control">
-                        <label for="title">Название</label>
-                        <input type="text" id="title" v-model="title">
-                      </div>
-                      <div class="input-control">
-                        <label for="description">Описание</label>
-                        <input type="text" id="description" v-model="description">
-                      </div>
-                      <button type="submit">Готово</button>
-                    </form>
-                  </form-wrapper>
-                </div>
+                <create-project creator-id="user.id"></create-project>
               </modal-window>
             </li>
             <!--Написать пост-->
             <li class="action write-post">
               <modal-window action="Пост">
-                <div slot="head">Написать пост</div>
-                <div slot="body">
-                  <form-wrapper>    
-                    <form @submit.prevent="createUser()">
-                      <div class="input-control">
-                        <label for="title">Заголовок</label>
-                        <input type="text" id="title" v-model="title">
-                      </div>
-                      <div class="input-control">
-                        <label for="text">Текст</label>
-                        <input type="text" id="text" v-model="text">
-                      </div>
-                      <button type="submit">Готово</button>
-                    </form>
-                  </form-wrapper>
-                </div>
+                <write-post author-id="user.id"></write-post>
               </modal-window>
             </li>
             <!--Отправить сообщение-->
             <li class="action send-message">
               <modal-window action="Сообщение">
-                <div slot="head">Отправить сообщение</div>
-                <div slot="body">
-                  <form-wrapper>    
-                    <form @submit.prevent="createUser()">
-                      <div class="input-control">
-                        <label for="text">Текст сообщения</label>
-                        <input type="text" id="text" v-model="text">
-                      </div>
-                      <button type="submit">Готово</button>
-                    </form>
-                  </form-wrapper>
-                </div>
+                <send-message from-user="" to-user=""></send-message>
               </modal-window>
             </li>
           </ul>
@@ -92,7 +51,10 @@ import appMixin from '../../mixin';
 import actionsPanel from 'parts/actions-panel';
 import navLinks from 'parts/nav-links';
 import modalWindow from 'parts/modal-window';
-import formWrapper from 'parts/form-wrapper';
+
+import createProject from './project/create-project';
+import writePost from './post/write-post';
+import sendMessage from './message/send-message';
 
 import User from 'class/user';
 
@@ -102,7 +64,9 @@ export default {
     modalWindow,
   	navLinks,
     actionsPanel,
-    formWrapper
+    createProject,
+    writePost,
+    sendMessage
   },
 
   data () {
@@ -113,7 +77,6 @@ export default {
   asyncData(resolve, reject){
   	let user = this.$root.user;
       resolve({
-          username: user.username,
           user: user       
       })
   	}

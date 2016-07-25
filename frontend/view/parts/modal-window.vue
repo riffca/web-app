@@ -4,12 +4,7 @@
 		<span @click="show=!show">{{ action }}</span>
 	</div>
 	<div class="modal-content" v-if="show">
-		<div class="content-head">
-			<slot name="head"></slot>	
-		</div>
-		<div class="content-body">
-			<slot name="body"></slot>
-		</div>
+		<slot></slot>
 		<click-button @click="show=!show" class="close-window">Закрыть</click-button>	
 	</div>
 </div>

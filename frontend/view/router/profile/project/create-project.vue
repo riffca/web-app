@@ -1,7 +1,12 @@
 <template>
 <div id="create-project">
+	<h3>Создать проект</h3>
 	<form-wrapper>		
-		<form @submit.prevent="createProject()">
+		<form @submit.prevent="$root.user.createProject({
+				title: title,
+				description: description,
+				creator: creatorId
+			})">
 			<div class="input-control">
 				<label for="title">Название</label>
 				<input type="text" id="title" v-model="title">
@@ -10,7 +15,6 @@
 				<label for="description">Описание</label>
 				<input type="text" id="description" v-model="description">
 			</div>
-			<input type="hidde" v-model="owner">
 			<button type="submit">Готово</button>
 		</form>
 	</form-wrapper>
@@ -18,10 +22,10 @@
 </template>
 <script>
 import formWrapper from 'parts/form-wrapper';
-import modalWindow from 'parts/modal-window';
 
 export default {
-  components: {modalWindow, formWrapper},
+  props: ['creator-id'],
+  components: {formWrapper},
   data () {
     return {
     	title: '',

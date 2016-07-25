@@ -1,10 +1,11 @@
 <template>
+	{{post | json}}
 	<div id="post">
 		<div class="post-content" v-if="!editing">
 			<h3>{{post.title}}</h3>
 			<p>{{post.text}}</p>
 			<span class="post-author">
-				{{post.author.email}}
+				{{post.author.email }}
 			</span>
 			<button @click="editing = !editing">Править</button>
 		</div>

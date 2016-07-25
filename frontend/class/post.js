@@ -4,14 +4,14 @@ const path = '/api/post';
 export default class {
     
     constructor({
-        id,
+        _id,
         author,
         title,
         text,
         createdAt,
         updatedAt
     }) {
-        this.id = id;
+        this.id = _id;
         this.author= author;
         this.title = title;
         this.text = text;
@@ -21,30 +21,34 @@ export default class {
 
 
     // M E T H O D S
-    update(id) {
-        return Vue.http.put(path + '/update-post',{
+    update() {
+        return Vue.http.put(path + '/update-post/'+this.id,{
             author: author,
             title: title,
             text: text
         });
     }
-    delete(id) {
-        return Vue.http.delete(path + '/delete-post');
+    delete() {
+        return Vue.http.delete(path + '/delete-post/'+this.id);
     }
 
 
     //S T A T I C
+
+    static getAllUserPosts(userId){
+        return Vue.http.get(path + '/get-all-user-posts/'+userId);
+    }
     static getAll(){
-        return Vue.http.get(path + '/get-post/all');
+        return Vue.http.get(path + '/get-all-posts');
     }
     static getOne(id){
-        return Vue.http.get(path + '/get-post/:id');
+        return Vue.http.get(path + '/get-one-post/' + id);
     }
     static create({title, text, authorId}) {
         return Vue.http.post(path + '/create-post', {
-            author: authorId,
             title: title,
-            text: text
+            text: text,
+            author: authorId
         });
     }
 }

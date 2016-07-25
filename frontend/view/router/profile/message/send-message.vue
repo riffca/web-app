@@ -1,18 +1,11 @@
 <template>
 <div id="send-project">
+	<h3>Отправить сообщение</h3>
 	<form-wrapper>		
 		<form @submit.prevent="createUser()">
 			<div class="input-control">
 				<label for="text">Имя пользователя</label>
 				<input type="text" id="text" v-model="text">
-			</div>
-			<div class="input-control">
-				<label for="toUser">Почта</label>
-				<input type="text" id="toUser" v-model="toUser">
-			</div>
-			<div class="input-control">
-				<label for="fromUser">Пароль</label>
-				<input type="text" id="fromUser" v-model="fromUser">
 			</div>
 			<button type="submit">Готово</button>
 		</form>
@@ -24,6 +17,7 @@ import formWrapper from 'parts/form-wrapper';
 import modalWindow from 'parts/modal-window';
 
 export default {
+  props: ['to-user', 'from-user'],
   components: {modalWindow, formWrapper},
   data () {
     return {

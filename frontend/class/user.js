@@ -54,7 +54,7 @@ export default class User {
                 return res.data;
             });
     }
-    sendMessage({ toUser, fromUser, title, text }) {
+    sendMessage({ toUser, fromUser = this.id, title, text }) {
         let message = new Message({
             toUser: toUser,
             fromUser: fromUser,
@@ -69,9 +69,9 @@ export default class User {
     }
 
     // P O S T api
-    getPostAll() {
+    getAllPosts() {
         return Post
-            .getAll()
+            .getAllUserPosts(this.id)
             .then(res => {
                 return res.data;
             });
@@ -83,14 +83,12 @@ export default class User {
                 return res.data;
             });
     }
-    writePost({ title, text, authorId }) {
-        let post = new Post({
-            title: title,
-            text: text,
-            author: authorId
-        });
+    writePost({ title, text }) {
         return Post
-            .create(post)
+            .create({
+                title: title,
+                text: text, 
+                authorId: this.id})
             .then(res => {
                 return res.data.post;
             });
@@ -112,12 +110,12 @@ export default class User {
                 return res.data.message;
             });
     }
-    createProject({ title, description, creatorId }) {
+    createProject({ title, description}) {
         return Project
             .create({
                 title: title,
                 description: description,
-                creator: creatorId
+                creator: this.id
             })
             .then(res => {
                 return res.data.project;

@@ -9,6 +9,9 @@ Vue.use(vueAsyncData);
 import vueResource from 'vue-resource';
 Vue.use(vueResource);
 
+// import vueMoment from 'vue-moment';
+// Vue.use(vueMoment);
+
 //I T E R C E P T O R S
 import interceptors from './service/interceptors';
 Vue.http.interceptors.push(interceptors);
@@ -24,19 +27,19 @@ let router = new vueRouter({
 import routeMap from './view/router'; 
 import authService from 'service/auth';
 
-router.beforeEach(({to, next, redirect})=>{
-	if(to.auth){
-		let isAuth = authService.checkAuth();
-		if(!isAuth){
-			redirect('/login');
-		} else {
-			next();
-		}
-	}
-	else {
-		next();
-	}
-});
+// router.beforeEach(({to, next, redirect})=>{
+// 	if(to.auth){
+// 		let isAuth = authService.checkAuth();
+// 		if(!isAuth){
+// 			redirect('/login');
+// 		} else {
+// 			next();
+// 		}
+// 	}
+// 	else {
+// 		next();
+// 	}
+// });
 
 router
     .map(routeMap)
