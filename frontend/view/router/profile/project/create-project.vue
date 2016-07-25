@@ -1,12 +1,11 @@
 <template>
+{{$data | json}}
 <div id="create-project">
 	<h3>Создать проект</h3>
 	<form-wrapper>		
-		<form @submit.prevent="$root.user.createProject({
+		<form @submit.prevent="createProject({
 				title: title,
-				description: description,
-				creator: creatorId
-			})">
+				description: description})">
 			<div class="input-control">
 				<label for="title">Название</label>
 				<input type="text" id="title" v-model="title">
@@ -24,13 +23,19 @@
 import formWrapper from 'parts/form-wrapper';
 
 export default {
-  props: ['creator-id'],
   components: {formWrapper},
   data () {
     return {
     	title: '',
     	description: ''
     };
+  },
+  methods:{
+  	createProject(options){
+  		this.$root.user
+	  	  .createProject(options)
+	      .then(data=>{})
+  	}
   }
 };
 </script>

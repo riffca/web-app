@@ -17,9 +17,9 @@ export default {
     };
   },
   asyncData(resolve, reject){
-  	let User = this.$parent.user;
+  	let User = this.$root.user;
   	console.log(User);
-  	User.getProjectAll().then(data=>{
+  	User.getAllProjects().then(data=>{
       resolve({
         projects: data.projects
       })

@@ -1,4 +1,3 @@
-const serverName = 'localhost:3000';
 const path = '/api/project';
 
 export default class {
@@ -14,23 +13,30 @@ export default class {
         this.created = created;
         this.update = updated;
     }
-    static create({title, desription, creatorId}) {
+
+
+    static create({title, description, creatorId}) {
         return Vue.http.post(path + '/create-project', {
             title: title,
             description: description,
             creator: creatorId
         });
     }
-    static getAll(){
-        return Vue.http.get(path + '/get-project/all');
+    static getAllUserProjects(userId){
+        return Vue.http.get(path + '/get-all-user-projects/' + userId);
     }
-    static getOne(id){
+    static getAllprojects(){
+        return Vue.http.get(path + '/get-all-projects');
+    }
+    static getProject(id){
         return Vue.http.get(path + '/get-project/:id');
     }
+
+
     update() {
-        return Vue.http.put(path + '/create-project');
+        return Vue.http.put(path + '/update-project/'+projectId);
     }
     delete() {
-        return Vue.http.delete(path + '/create-project');
+        return Vue.http.delete(path + '/delete-project/'+projectId);
     }
 }

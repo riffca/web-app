@@ -95,9 +95,9 @@ export default class User {
     }
 
     // P R O J E C T api
-    getProjectAll() {
+    getAllProjects() {
         return Project
-            .getAll()
+            .getAllUserProjects(this.id)
             .then(res => {
                 return res.data.message;
             });
@@ -115,7 +115,7 @@ export default class User {
             .create({
                 title: title,
                 description: description,
-                creator: this.id
+                creatorId: this.id
             })
             .then(res => {
                 return res.data.project;

@@ -3,10 +3,9 @@
     <h3>{{project.title}}</h3>
     <p>{{project.text}}</p>
 
-    <timestamps 
-          :timestamps="{createdAt: project.createdAt, 
-                          updatedAt: project.updatedAt}">   
-      </timestamps>  
+    <timestamps :timestamps="{createdAt: project.createdAt, 
+                              updatedAt: project.updatedAt}">   
+    </timestamps>  
   </div>
 </template>
 <script>

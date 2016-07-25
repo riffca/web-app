@@ -3,7 +3,7 @@
 		<h2>Профиль</h2>
 		<h3>Привет {{user.username}}</h3>
     <nav-links title="profile page">
-      <a v-link="{name:'Сообщения'}">Сообщения</a>
+    <!--   <a v-link="{name:'Сообщения'}">Сообщения</a> -->
       <a v-link="{name:'Посты'}">Посты</a>
       <a v-link="{name:'Проекты'}">Проекты</a>
     </nav-links>
@@ -14,9 +14,9 @@
         <actions-panel title="Создать">
           <ul>
             <!--Создать проект-->
-            <li v-link="{query: {create: 'project'}}" class="action create-project">
+            <li class="action create-project">
               <modal-window action="Проект">
-                <create-project creator-id="user.id"></create-project>
+                <create-project></create-project>
               </modal-window>
             </li>
             <!--Написать пост-->
@@ -26,11 +26,11 @@
               </modal-window>
             </li>
             <!--Отправить сообщение-->
-            <li class="action send-message">
+<!--             <li class="action send-message">
               <modal-window action="Сообщение">
                 <send-message from-user="" to-user=""></send-message>
               </modal-window>
-            </li>
+            </li> -->
           </ul>
         </actions-panel>
       </div>
