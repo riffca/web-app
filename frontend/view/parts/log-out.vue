@@ -21,7 +21,7 @@ export default {
 	display: inline-block;
 	font-size: 1.1rem;
 	cursor: pointer;
-	float: right;
+	margin-left: 20px;
 	&:hover {
 		outline: 1px solid darkred;
 	}

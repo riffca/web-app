@@ -1,5 +1,4 @@
 <template>
-	{{post | json}}
 	<div id="post">
 		<div class="post-content" v-if="!editing">
 			<h3>{{post.title}}</h3>

@@ -9,8 +9,14 @@ import User from './user';
 */
 export default class App {
 
-    constructor(callback) {
-        this.user = new User(callback);
+    constructor() {
+        //создаем default юзера для приложения
+        this.user = new User({
+            id: 'unknown',
+            username: 'uknown',
+            email: 'unknown',
+            auth: false
+        });
         this.created = Date.now();
         this.hostPath = '';
     }
@@ -52,7 +58,9 @@ export default class App {
     }
     logOut(){
         tokenService.deleteToken();
+        //потом надо перезагрузить юзера приложения
     }
+
     /**
     /*
     /*JWT token пользователя only

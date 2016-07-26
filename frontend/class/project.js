@@ -3,15 +3,17 @@ const path = '/api/project';
 export default class {
     
     constructor({
+        _id,
         title,
         description,
-        created,
-        updated
+        createdAt,
+        updatedAt
     }) {
+        this.id = _id;
         this.title = title;
         this.description = description;
-        this.created = created;
-        this.update = updated;
+        this.created = createdAt;
+        this.updated = updatedAt; 
     }
 
 

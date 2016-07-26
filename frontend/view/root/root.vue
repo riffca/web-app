@@ -1,7 +1,7 @@
 <template>
     {{user | json}}
-	  <brand-root :currenttitel.sync="currentTitle"></brand-root>
-    <router-view title="currentTitle"></router-view>
+	  <brand-root></brand-root>
+    <router-view></router-view>
 </template>
 
 <script>
@@ -24,7 +24,6 @@ export default {
   }, 
   data () {
     return {
-      currentTitle: 'Главная', 
       app: '',
       user: ''
     };
@@ -41,13 +40,7 @@ export default {
 
         //not auth unknown user
         if(!resData.success){
-          let user = new User({
-              id: 'unknown',
-              username: 'unknown',
-              email: 'unknow',
-              auth: false
-          });
-          app.user = user.id;
+          let user = app.user;
           resolve({
             app: app,
             user: user

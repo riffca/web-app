@@ -1,12 +1,11 @@
 <template>
     <div id="brand">
 		<div class="brand-logo">
-			<h2>Проекты<log-out></log-out></h2>
-
+			<h2>Проекты<log-out v-if="$root.user.auth"></log-out></h2>
 		</div>
 		<nav-links title="home page">
-			<a v-link="{name: 'Регистрация'}">Регистрация</a>
-			<a v-link="{name: 'Профиль'}">Профиль</a>
+			<a v-if="!$root.user.auth" v-link="{name: 'Регистрация'}">Регистрация</a>
+			<a v-if="$root.user.auth" v-link="{name: 'Профиль'}">Профиль</a>
 			<!-- <a v-link="{name: 'Админка'}">Админка</a>  --> 
 	    </nav-links>
     </div>

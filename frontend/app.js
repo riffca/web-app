@@ -16,30 +16,27 @@ Vue.use(vueResource);
 import interceptors from './service/interceptors';
 Vue.http.interceptors.push(interceptors);
 
-
 let rootComponent = Vue.extend(require('./view/root/root.vue'));
 
 let router = new vueRouter({
     history: false
 });
 
-
 import routeMap from './view/router'; 
 import authService from 'service/auth';
 
-// router.beforeEach(({to, next, redirect})=>{
-// 	if(to.auth){
-// 		let isAuth = authService.checkAuth();
-// 		if(!isAuth){
-// 			redirect('/login');
-// 		} else {
-// 			next();
-// 		}
-// 	}
-// 	else {
-// 		next();
-// 	}
-// });
+router.beforeEach(({to, next, redirect})=>{
+	let isAuthUser = authService.checkAuth();
+	if(!isAuthUser && to.auth){
+		redirect('/auth/login');
+		return;
+	}
+	if(isAuthUser && !to.auth){
+		redirect('/profile');
+	    return;
+	}
+	next();
+});
 
 router
     .map(routeMap)

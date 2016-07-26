@@ -20,6 +20,7 @@ module.exports = function(express) {
             .populate('creator','username')
             .select('creator title description createdAt')
             .limit(10)
+            .sort({createdAt: -1})
             .then(docs=>{
                 res.json(docs);
             });

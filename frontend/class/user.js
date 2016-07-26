@@ -95,13 +95,12 @@ export default class User {
                 return res.data.post;
             });
     }
-
     // P R O J E C T api
     getAllProjects() {
         return Project
             .getAllUserProjects(this.id)
             .then(res => {
-                return res.data.message;
+                return res.data;
             });
     }
 

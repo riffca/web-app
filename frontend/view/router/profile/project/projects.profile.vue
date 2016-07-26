@@ -13,15 +13,14 @@ export default {
   components: {project},
   data () {
     return {
-      projects: 10
+      projects: ''
     };
   },
   asyncData(resolve, reject){
   	let User = this.$root.user;
-  	console.log(User);
-  	User.getAllProjects().then(data=>{
+  	User.getAllProjects().then(projects=>{
       resolve({
-        projects: data.projects
+        projects: projects
       })
     });
   }

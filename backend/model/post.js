@@ -30,8 +30,9 @@ module.exports = function(express) {
         Post
         .find({author: req.params.authorId})
         .populate('author')
-        .limit(10)
         .select('author title text createdAt updatedAt')
+        .limit(10)
+        .sort({createdAt: -1})
         .then(docs=>{
             res.json(docs);
         });

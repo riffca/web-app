@@ -1,7 +1,7 @@
 <template>
   <div id="project">
     <h3>{{project.title}}</h3>
-    <p>{{project.text}}</p>
+    <p>{{project.description}}</p>
 
     <timestamps :timestamps="{createdAt: project.createdAt, 
                               updatedAt: project.updatedAt}">   

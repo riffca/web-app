@@ -8,7 +8,13 @@ let profilePath = getPath('/profile');
 let authPath = getPath('/auth');
 let adminPath = getPath('/admin');
 export default {
+    '*': {
+        component: {
+            template: `<h1>Страница не найдена</h1>`
+        }
+    },
     '/auth': {
+        auth: false,
         name: 'Регистрация',
         component: require(authPath + '/root.auth'),
         subRoutes: {
@@ -30,7 +36,6 @@ export default {
             '/messages': {
                 name: 'Сообщения',
                 component: require(profilePath + '/message/messages.profile')
-
             },
             '/posts': {
                 name: 'Посты',
@@ -39,11 +44,11 @@ export default {
             '/projects': {
                 name: 'Проекты',
                 component: require(profilePath + '/project/projects.profile')
-
             }
         }
     },
     '/admin': {
+        auth: true,
         name: 'Админка',
         component: require(adminPath + '/root.admin'),
         subRoutes: {

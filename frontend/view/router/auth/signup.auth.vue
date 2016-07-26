@@ -40,7 +40,7 @@ export default {
   			password: this.password,
   			username: this.username
   			}).then(res=>{
-  				//alert(res.data.message);
+  				this.$route.router.go({name: 'login'});
   			});
   	}
   }
