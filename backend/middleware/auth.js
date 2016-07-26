@@ -20,7 +20,7 @@ module.exports = {
                     success: false,
                     error: err
                 });
-                //console.log(err);
+                return;
             }
             res.decodedToken = decoded;
             next();
@@ -40,26 +40,5 @@ module.exports = {
             });
         });
 
-    },
-
-    //Тестовая функция
-    authCheck(req, res, next) {
-        let authToken = 'secret';
-        let token = req.headers['x-access-token'];
-        if (token != authToken) {
-            res.authStatus = 'guest';
-            res.json({
-                id: 0,
-                name: 'guest',
-                email: '',
-                phoneNumber: '',
-                login: true,
-                basket: {},
-                status: res.authStatus
-            });
-        } else {
-            res.authStatus = 'user';
-            next();
-        }
     }
 };

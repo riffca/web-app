@@ -6,7 +6,14 @@ let auth = require('../middleware/auth');
 //A P I
 module.exports = function(express) {
     let api = express.Router();
-    //create user and account
+
+    /**
+    /*
+    /*C R E A T E  U S E R  A C C O U N T
+    /*
+    */
+
+    //public
     api.post('/create-account', (req, res) => {
         let user = new User({
             email: req.body.email,
@@ -39,7 +46,12 @@ module.exports = function(express) {
             owner: user._id
         }).then(account => {});
     });*/
-    //login user
+
+    /**
+    /*
+    /*L O G I N  U S E R
+    /*
+    */
     api.post('/login-account', (req, res) => {
         User
             .findOne({
@@ -83,8 +95,22 @@ module.exports = function(express) {
                 }
             });
     });
-    
-    // M I D D L E W A R E
+
+    /**
+    /*
+    /*G E T T E R S 
+    /*
+    */
+    api.get('/get-all-users', (req,res)=>{
+        User.find()
+        .limit(10)
+        .sort({createdAt: -1})
+        .then(users=>{
+            res.json(users);
+        });
+    });
+
+    //auth
     api.use(auth.verifyToken);
 
     api.get('/get-auth-user', (req, res) => {
@@ -95,8 +121,11 @@ module.exports = function(express) {
     });
 
 
-
-    //I D E A S 
+    /**
+    /*
+    /*M A N I P U L A T E
+    /*
+    */
     api.post('/updateCurrentUser', (req, res) => {
         User.findOne(req.body.userId)
             .then(user => {
