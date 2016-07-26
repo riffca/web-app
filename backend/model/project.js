@@ -19,8 +19,8 @@ module.exports = function(express) {
             .find({creator: req.params.userId})
             .populate('creator','username')
             .select('creator title description createdAt')
-            .limit(10)
             .sort({createdAt: -1})
+            .limit(5)
             .then(docs=>{
                 res.json(docs);
             });
