@@ -28,6 +28,27 @@ export default {
             }
         }
     },
+    '/user': {
+        auth: true,
+        name: 'user',
+        component: require(userPath + '/root.user'),
+        subRoutes:{
+            '/:userId': {
+                name: 'userPage',
+                component: require(userPath + '/user-page'),
+                subRoutes: {
+                    '/posts':{
+                        name:'userPosts',
+                        component: require(userPath + '/user-posts')
+                    },
+                    '/projects':{
+                        name:'userProjects',
+                        component: require(userPath + '/user-projects')
+                    }
+                }
+            }
+        }
+    },
     '/profile': {
         auth: true,
         name: 'Профиль',
